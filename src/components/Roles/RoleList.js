@@ -35,7 +35,7 @@ export default function RoleList(props) {
         },
         {
             dataField: "",
-            text: "Edit",
+            text: 'Edit',
             formatter: viewPageLink,
             sort: true,
             headerStyle: (column, colIndex) => {
@@ -44,7 +44,7 @@ export default function RoleList(props) {
         },
         {
             dataField: "",
-            text: "Delete",
+            text: 'Delete',
             formatter: deletePageLink,
             sort: true,
             headerStyle: (column, colIndex) => {

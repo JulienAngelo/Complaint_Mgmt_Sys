@@ -9,8 +9,8 @@ import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
-import BoardUser from "./components/board-user.component";
-import BoardAdmin from "./components/board-admin.component";
+import EditorDashboard from "./components/Dashboard/EditorDashboard";
+import AdminDashboard from "./components/Dashboard/AdminDashboard";
 
 import RoleList from "./components/Roles/RoleList";
 import AddRole from "./components/Roles/AddRole";
@@ -48,24 +48,18 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand" >
-            Simply Shopping
-          </Link>
+          <Link to={"/"} className="navbar-brand" >ICAF</Link>
           <div className="navbar-nav mr-auto">
 
             {showAdminBoard && (
               <li className="nav-item">
-                <Link to={"/admin"} className="nav-link" >
-                  <i className="fa fa-user-secret"></i>&nbsp; Seller
-                </Link>
+                <Link to={"/admin"} className="nav-link" ><i className="fa fa-user-secret"></i>&nbsp; Admin</Link>
               </li>
             )}
 
             {currentUser && (
               <li className="nav-item">
-                <Link to={"/user"} className="nav-link" >
-                  <i className="fa fa-user-circle-o"></i>&nbsp; Buyer
-                </Link>
+                <Link to={"/editor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Editor</Link>
               </li>
             )}
           </div>
@@ -73,28 +67,20 @@ class App extends Component {
           {currentUser ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to={ "/profile" } className="nav-link">
-                  <i className="fa fa-user"></i>&nbsp; {currentUser.username}
-                </Link>
+                <Link to={ "/profile" } className="nav-link"><i className="fa fa-user"></i>&nbsp; {currentUser.username}</Link>
               </li>
               <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
-                </a>
+                <a href="/login" className="nav-link" onClick={this.logOut}>LogOut</a>
               </li>
             </div>
           ) : (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
+                <Link to={"/login"} className="nav-link">Login</Link>
               </li>
 
               <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
+                <Link to={"/register"} className="nav-link">Sign Up</Link>
               </li>
             </div>
           )}
@@ -108,8 +94,8 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
-              <Route path="/user" component={BoardUser} />
-              <Route path="/admin" component={BoardAdmin} />
+              <Route path="/editor" component={EditorDashboard} />
+              <Route path="/admin" component={AdminDashboard} />
 
               <Route path="/roles" component={RoleList} />
               <Route path="/role/add" component={AddRole} />

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import UserService from "../services/user.service";
-import SideNavUserComponent from "./Navbar/side-nav-comn.component";
 import Table from 'react-bootstrap/Table';
 import {InputGroup, FormControl, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -136,7 +135,6 @@ export default class Home extends Component {
 
     return (
         <>
-          <SideNavUserComponent/>
           <div className="container">
             <header className="jumbotron">
               <h3>Our Store</h3><br/>
