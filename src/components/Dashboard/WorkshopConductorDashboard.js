@@ -21,9 +21,9 @@ export default function WorkshopConductorDashboard(props) {
     }
 
     return(
-        <div>
+        <div className="main">
             <WorkshopConductorSideNav/>
-            <div className="container">
+            <div className="container mt-3" style={{marginLeft:"50px"}}>
                 <header className="jumbotron">
                     <h3>Workshop Conductor Dashboard</h3><br/>
                     <div className="row ">

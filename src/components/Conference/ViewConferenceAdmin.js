@@ -56,10 +56,10 @@ export default function ViewConferenceAdmin(props) {
     }
 
     return(
-        <div>
+        <div className="main">
             <AdminSideNav />
-            <div className="container" style={{
-                marginLeft: '15px',
+            <div className="container mt-3" style={{
+                marginLeft: '60px',
                 backgroundColor: '#ccccff',
                 boxShadow: '1px 2px 2px 2px rgba(0.3, 0.3, 0.3, 0.3)',
                 borderRadius: '5px',

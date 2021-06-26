@@ -21,9 +21,9 @@ export default function EditorDashboard(props) {
   }
 
   return(
-      <div>
+      <div className="main">
         <EditorSideNav/>
-        <div className="container">
+        <div className="container mt-3" style={{marginLeft:"50px"}}>
           <header className="jumbotron">
             <h3>Editor Dashboard</h3><br/>
             <div className="row ">

@@ -9,6 +9,7 @@ import "./dashboard.-styles.css";
 //import Register from "./components/register.component";
 //import Home from "./components/home.component";
 //import Profile from "./components/profile.component";
+import Home from "./components/Common/Home";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import EditorDashboard from "./components/Dashboard/EditorDashboard";
 import ReviewerDashboard from "./components/Dashboard/ReviewerDashboard";
@@ -106,10 +107,10 @@ class App extends Component {
         </nav>
 
 
-        <div className="main">
-          <div className="container mt-3" style={{marginLeft:"30px"}}>
+        <div>
             <Switch>
-                <Route exact path={["/", "/admin"]} component={AdminDashboard} />
+                <Route exact path={["/", "/home"]} component={Home} />
+                <Route path="/admin" component={AdminDashboard} />
                 <Route path="/editor" component={EditorDashboard} />
                 <Route path="/reviewer" component={ReviewerDashboard} />
                 <Route path="/researcher" component={ResearcherDashboard} />
@@ -120,9 +121,7 @@ class App extends Component {
                 <Route path="/conferences-admin" component={ConferenceListAdmin} />
                 <Route path="/conference/add" component={AddConference} />
                 <Route path="/conference-admin/view/:id" component={ViewConferenceAdmin} />
-
             </Switch>
-          </div>
         </div>
 
       </div>

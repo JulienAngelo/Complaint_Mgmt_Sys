@@ -21,9 +21,9 @@ export default function ResearcherDashboard(props) {
     }
 
     return(
-        <div>
+        <div className="main">
             <ResearcherSideNav/>
-            <div className="container">
+            <div className="container mt-3" style={{marginLeft:"50px"}}>
                 <header className="jumbotron">
                     <h3>Researcher Dashboard</h3><br/>
                     <div className="row ">

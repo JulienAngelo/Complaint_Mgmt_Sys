@@ -21,9 +21,9 @@ export default function AdminDashboard(props) {
     }
 
     return(
-        <div>
+        <div className="main">
             <AdminSideNav/>
-            <div className="container">
+            <div className="container mt-3" style={{marginLeft:"50px"}}>
                 <header className="jumbotron">
                     <h3>Admin Dashboard</h3><br/>
                     <div className="row ">
