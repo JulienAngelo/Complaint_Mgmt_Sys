@@ -4,11 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./dashboard.-styles.css";
 
-import AuthService from "./services/auth.service";
-import Login from "./components/login.component";
-import Register from "./components/register.component";
-import Home from "./components/home.component";
-import Profile from "./components/profile.component";
+//import AuthService from "./services/auth.service";
+//import Login from "./components/login.component";
+//import Register from "./components/register.component";
+//import Home from "./components/home.component";
+//import Profile from "./components/profile.component";
 import EditorDashboard from "./components/Dashboard/EditorDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 
@@ -28,22 +28,22 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const user = AuthService.getCurrentUser();
+    /*const user = AuthService.getCurrentUser();
 
     if (user) {
       this.setState({
         currentUser: user,
         showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
-    }
+    }*/
   }
 
   logOut() {
-    AuthService.logout();
+    //AuthService.logout();
   }
 
   render() {
-    const { currentUser, showAdminBoard } = this.state;
+    //const { currentUser, showAdminBoard } = this.state;
 
     return (
       <div>
@@ -51,29 +51,29 @@ class App extends Component {
           <Link to={"/"} className="navbar-brand" >ICAF</Link>
           <div className="navbar-nav mr-auto">
 
-            {showAdminBoard && (
+
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link" ><i className="fa fa-user-secret"></i>&nbsp; Admin</Link>
               </li>
-            )}
 
-            {currentUser && (
+
+
               <li className="nav-item">
                 <Link to={"/editor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Editor</Link>
               </li>
-            )}
+
           </div>
 
-          {currentUser ? (
+
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to={ "/profile" } className="nav-link"><i className="fa fa-user"></i>&nbsp; {currentUser.username}</Link>
+                <Link to={ "/profile" } className="nav-link"><i className="fa fa-user"></i>&nbsp; MKW</Link>
               </li>
               <li className="nav-item">
                 <a href="/login" className="nav-link" onClick={this.logOut}>LogOut</a>
               </li>
             </div>
-          ) : (
+
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link to={"/login"} className="nav-link">Login</Link>
@@ -83,19 +83,15 @@ class App extends Component {
                 <Link to={"/register"} className="nav-link">Sign Up</Link>
               </li>
             </div>
-          )}
+
         </nav>
 
 
         <div className="main">
           <div className="container mt-3" style={{marginLeft:"30px"}}>
             <Switch>
-              <Route exact path={["/", "/home"]} component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/profile" component={Profile} />
               <Route path="/editor" component={EditorDashboard} />
-              <Route path="/admin" component={AdminDashboard} />
+              <Route exact path={["/", "/admin"]} component={AdminDashboard} />
 
               <Route path="/roles" component={RoleList} />
               <Route path="/role/add" component={AddRole} />

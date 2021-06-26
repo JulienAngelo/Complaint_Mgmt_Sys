@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import UserService from "../../services/user.service";
+import axios from "axios";
 import AdminSideNav from "../Navbar/AdminSideNav";
 
 export default class AdminDashboard extends Component {
@@ -7,17 +7,12 @@ export default class AdminDashboard extends Component {
       super(props);
       this.state = {
         content: {},
-        totalItems: '',
-        totalCategories: '',
-        totalBrands: '',
-        totalSellers: '',
-        totalBuyers: '',
-        totalOrders: ''
+        totalRoles: ''
       };
     }
 
     componentDidMount() {
-        UserService.getAdminBoard().then(
+        axios.get("https://icaf-backend.herokuapp.com/dashboard/admin").then(
             response => {
                 this.setState({
                     content: response.data
@@ -47,7 +42,7 @@ export default class AdminDashboard extends Component {
                             <div className="col-md-3">
                                 <div className="card-counter items">
                                     <i className="fa fa-shopping-cart"></i>
-                                    <span className="count-numbers"><h1>{this.state.content.totalItems}</h1></span>
+                                    <span className="count-numbers"><h1>{this.state.content.totalRoles}</h1></span>
                                     <span className="count-name">Items</span>
                                 </div>
                             </div>
@@ -55,7 +50,7 @@ export default class AdminDashboard extends Component {
                             <div className="col-md-3">
                                 <div className="card-counter categories">
                                     <i className="fa fa-th-list"></i>
-                                  <span className="count-numbers"><h1>{this.state.content.totalCategories}</h1></span>
+                                  <span className="count-numbers"><h1>{this.state.content.totalRoles}</h1></span>
                                   <span className="count-name">Categories</span>
                                 </div>
                             </div>
@@ -63,7 +58,7 @@ export default class AdminDashboard extends Component {
                             <div className="col-md-3">
                                 <div className="card-counter brands">
                                     <i className="fa fa-gift"></i>
-                                  <span className="count-numbers"><h1>{this.state.content.totalBrands}</h1></span>
+                                  <span className="count-numbers"><h1>{this.state.content.totalRoles}</h1></span>
                                   <span className="count-name">Brands</span>
                                 </div>
                             </div>
@@ -71,7 +66,7 @@ export default class AdminDashboard extends Component {
                             <div className="col-md-3">
                                 <div className="card-counter sellers">
                                     <i className="fa fa-user-secret"></i>
-                                  <span className="count-numbers"><h1>{this.state.content.totalSellers}</h1></span>
+                                  <span className="count-numbers"><h1>{this.state.content.totalRoles}</h1></span>
                                   <span className="count-name">Sellers</span>
                                 </div>
                             </div>
@@ -80,7 +75,7 @@ export default class AdminDashboard extends Component {
                             <div className="col-md-3">
                                 <div className="card-counter buyers">
                                     <i className="fa fa-users"></i>
-                                  <span className="count-numbers"><h1>{this.state.content.totalBuyers}</h1></span>
+                                  <span className="count-numbers"><h1>{this.state.content.totalRoles}</h1></span>
                                   <span className="count-name">Buyers</span>
                                 </div>
                             </div>
@@ -88,7 +83,7 @@ export default class AdminDashboard extends Component {
                             <div className="col-md-3">
                                 <div className="card-counter orders">
                                     <i className="fa fa-money"></i>
-                                  <span className="count-numbers"><h1>{this.state.content.totalOrders}</h1></span>
+                                  <span className="count-numbers"><h1>{this.state.content.totalRoles}</h1></span>
                                   <span className="count-name">Orders</span>
                                 </div>
                             </div>
@@ -96,7 +91,7 @@ export default class AdminDashboard extends Component {
                             <div className="col-md-3">
                                 <div className="card-counter deliveries">
                                     <i className="fa fa-truck"></i>
-                                    <span className="count-numbers"><h1>{this.state.content.totalItems}</h1></span>
+                                    <span className="count-numbers"><h1>{this.state.content.totalRoles}</h1></span>
                                     <span className="count-name">Deliveries</span>
                                 </div>
                             </div>
@@ -104,7 +99,7 @@ export default class AdminDashboard extends Component {
                             <div className="col-md-3">
                                 <div className="card-counter complains">
                                     <i className="fa fa-frown-o"></i>
-                                    <span className="count-numbers"><h1>{this.state.content.totalItems}</h1></span>
+                                    <span className="count-numbers"><h1>{this.state.content.totalRoles}</h1></span>
                                     <span className="count-name">Complains</span>
                                 </div>
                             </div>
