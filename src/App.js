@@ -1,16 +1,127 @@
-import './App.css';
+import React, { Component } from "react";
+import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {BrowserRouter as Router, Route} from "react-router-dom"
-import Header from "./components/Common/Header";
+import "./App.css";
+import "./dashboard.-styles.css";
 
-function App() {
-  return (
-    <Router>
-        <div>
-            <Header/>
+import AuthService from "./services/auth.service";
+import Login from "./components/login.component";
+import Register from "./components/register.component";
+import Home from "./components/home.component";
+import Profile from "./components/profile.component";
+import BoardUser from "./components/board-user.component";
+import BoardAdmin from "./components/board-admin.component";
+
+import RoleList from "./components/Roles/RoleList";
+import AddRole from "./components/Roles/AddRole";
+import ViewRole from "./components/Roles/ViewRole";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.logOut = this.logOut.bind(this);
+
+    this.state = {
+      showAdminBoard: false,
+      currentUser: undefined,
+    };
+  }
+
+  componentDidMount() {
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      this.setState({
+        currentUser: user,
+        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+      });
+    }
+  }
+
+  logOut() {
+    AuthService.logout();
+  }
+
+  render() {
+    const { currentUser, showAdminBoard } = this.state;
+
+    return (
+      <div>
+        <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <Link to={"/"} className="navbar-brand" >
+            Simply Shopping
+          </Link>
+          <div className="navbar-nav mr-auto">
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/admin"} className="nav-link" >
+                  <i className="fa fa-user-secret"></i>&nbsp; Seller
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to={"/user"} className="nav-link" >
+                  <i className="fa fa-user-circle-o"></i>&nbsp; Buyer
+                </Link>
+              </li>
+            )}
+          </div>
+
+          {currentUser ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={ "/profile" } className="nav-link">
+                  <i className="fa fa-user"></i>&nbsp; {currentUser.username}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a href="/login" className="nav-link" onClick={this.logOut}>
+                  LogOut
+                </a>
+              </li>
+            </div>
+          ) : (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/login"} className="nav-link">
+                  Login
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/register"} className="nav-link">
+                  Sign Up
+                </Link>
+              </li>
+            </div>
+          )}
+        </nav>
+
+
+        <div className="main">
+          <div className="container mt-3" style={{marginLeft:"30px"}}>
+            <Switch>
+              <Route exact path={["/", "/home"]} component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/profile" component={Profile} />
+              <Route path="/user" component={BoardUser} />
+              <Route path="/admin" component={BoardAdmin} />
+
+              <Route path="/roles" component={RoleList} />
+              <Route path="/role/add" component={AddRole} />
+              <Route path="/role/:id" component={ViewRole} />
+
+            </Switch>
+          </div>
         </div>
-    </Router>
-  );
+
+      </div>
+    );
+  }
 }
 
 export default App;
