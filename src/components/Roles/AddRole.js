@@ -40,7 +40,7 @@ export default function AddRole(props) {
                 height : '1000px'
             }}>
                 <br/>
-                <div className="card" style={{width : '50%', marginTop: 0, marginLeft : '15px', borderRadius: '5px'}}>
+                <div className="card" style={{width : '60%', marginTop: 0, marginLeft : '15px', borderRadius: '5px'}}>
                     <div className="card-header" style={{backgroundColor: '#f2f2f2'}}>
                         <h4>Add Role</h4>
                     </div>
@@ -49,7 +49,7 @@ export default function AddRole(props) {
                             <div className="form-group row">
                                 <label htmlFor="name" className="col-sm-3">Name</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="name" placeholder="Enter Role Name" value={data.name} required/>
+                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="name" placeholder="Enter Name" value={data.name} required/>
                                 </div>
                             </div><br/>
                             <button type="submit" className="btn btn-primary">Save</button>

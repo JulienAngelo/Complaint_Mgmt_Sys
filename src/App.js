@@ -17,6 +17,9 @@ import WorkshopConductorDashboard from "./components/Dashboard/WorkshopConductor
 import RoleList from "./components/Roles/RoleList";
 import AddRole from "./components/Roles/AddRole";
 import ViewRole from "./components/Roles/ViewRole";
+import ConferenceListAdmin from "./components/Conference/ConferenceListAdmin";
+import AddConference from "./components/Conference/AddConference";
+import ViewConferenceAdmin from "./components/Conference/ViewConferenceAdmin";
 
 class App extends Component {
   constructor(props) {
@@ -114,6 +117,9 @@ class App extends Component {
                 <Route path="/roles" component={RoleList} />
                 <Route path="/role/add" component={AddRole} />
                 <Route path="/role/:id" component={ViewRole} />
+                <Route path="/conferences-admin" component={ConferenceListAdmin} />
+                <Route path="/conference/add" component={AddConference} />
+                <Route path="/conference-admin/view/:id" component={ViewConferenceAdmin} />
 
             </Switch>
           </div>
