@@ -9,9 +9,11 @@ import "./dashboard.-styles.css";
 //import Register from "./components/register.component";
 //import Home from "./components/home.component";
 //import Profile from "./components/profile.component";
-import EditorDashboard from "./components/Dashboard/EditorDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
-
+import EditorDashboard from "./components/Dashboard/EditorDashboard";
+import ReviewerDashboard from "./components/Dashboard/ReviewerDashboard";
+import ResearcherDashboard from "./components/Dashboard/ResearcherDashboard";
+import WorkshopConductorDashboard from "./components/Dashboard/WorkshopConductorDashboard";
 import RoleList from "./components/Roles/RoleList";
 import AddRole from "./components/Roles/AddRole";
 import ViewRole from "./components/Roles/ViewRole";
@@ -62,6 +64,20 @@ class App extends Component {
                 <Link to={"/editor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Editor</Link>
               </li>
 
+
+              <li className="nav-item">
+                <Link to={"/reviewer"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Reviewer</Link>
+              </li>
+
+
+              <li className="nav-item">
+                <Link to={"/researcher"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Researcher</Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/workshop-conductor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Workshop Conductor</Link>
+              </li>
+
           </div>
 
 
@@ -90,12 +106,14 @@ class App extends Component {
         <div className="main">
           <div className="container mt-3" style={{marginLeft:"30px"}}>
             <Switch>
-              <Route path="/editor" component={EditorDashboard} />
-              <Route exact path={["/", "/admin"]} component={AdminDashboard} />
-
-              <Route path="/roles" component={RoleList} />
-              <Route path="/role/add" component={AddRole} />
-              <Route path="/role/:id" component={ViewRole} />
+                <Route exact path={["/", "/admin"]} component={AdminDashboard} />
+                <Route path="/editor" component={EditorDashboard} />
+                <Route path="/reviewer" component={ReviewerDashboard} />
+                <Route path="/researcher" component={ResearcherDashboard} />
+                <Route path="/workshop-conductor" component={WorkshopConductorDashboard} />
+                <Route path="/roles" component={RoleList} />
+                <Route path="/role/add" component={AddRole} />
+                <Route path="/role/:id" component={ViewRole} />
 
             </Switch>
           </div>
