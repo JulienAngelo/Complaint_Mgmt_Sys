@@ -28,8 +28,12 @@ import AddTrack from "./components/ConferenceTracks/AddTrack";
 import ViewTrack from "./components/ConferenceTracks/ViewTrack";
 import TrackListAdmin from "./components/ConferenceTracks/TrackListAdmin";
 import ApproveRejectTrack from "./components/ConferenceTracks/ApproveRejectTrack";
-import NotificationBox from "./components/Notifications/NotificationBox";
-import ViewNotification from "./components/Notifications/ViewNotification";
+import NotificationBoxEditor from "./components/Notifications/NotificationBoxEditor";
+import ViewNotificationEditor from "./components/Notifications/ViewNotificationEditor";
+import NotificationBoxResearcher from "./components/Notifications/NotificationBoxResearcher";
+import ViewNotificationResearcher from "./components/Notifications/ViewNotificationResearcher";
+import NotificationBoxWorkshopConductor from "./components/Notifications/NotificationBoxWorkshopConductor";
+import ViewNotificationWorkshopConductor from "./components/Notifications/ViewNotificationWorkshopConductor";
 import ConferenceList from "./components/Conference/ConferenceList";
 import ViewConference from "./components/Conference/ViewConference";
 
@@ -137,8 +141,12 @@ class App extends Component {
                 <Route path="/track/:id" component={ViewTrack} />
                 <Route path="/tracks-admin" component={TrackListAdmin} />
                 <Route path="/track-admin/:id" component={ApproveRejectTrack} />
-                <Route path="/notifications" component={NotificationBox} />
-                <Route path="/notification/:id" component={ViewNotification} />
+                <Route path="/notifications-editor" component={NotificationBoxEditor} />
+                <Route path="/notification-editor/:id" component={ViewNotificationEditor} />
+                <Route path="/notifications-researcher" component={NotificationBoxResearcher} />
+                <Route path="/notification-researcher/:id" component={ViewNotificationResearcher} />
+                <Route path="/notifications-workshop-conductor" component={NotificationBoxWorkshopConductor} />
+                <Route path="/notification-workshop-conductor/:id" component={ViewNotificationWorkshopConductor} />
                 <Route path="/conferences" component={ConferenceList} />
                 <Route path="/conference/:id" component={ViewConference} />
             </Switch>

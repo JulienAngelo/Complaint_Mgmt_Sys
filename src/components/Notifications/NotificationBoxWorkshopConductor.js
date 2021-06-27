@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
-import EditorSideNav from "../Navbar/EditorSideNav";
+import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
-export default function NotificationBox(props) {
+export default function NotificationBoxWorkshopConductor(props) {
 
     const [notifications, setNotifications] = useState([]);
     const columns = [
@@ -96,7 +96,7 @@ export default function NotificationBox(props) {
     }
 
     function viewNotification(notificationId) {
-        props.history.push("notification/"+notificationId)
+        props.history.push("notification-workshop-conductor/"+notificationId)
     }
 
     function deleteNotification(notificationId) {
@@ -127,7 +127,7 @@ export default function NotificationBox(props) {
 
     return(
         <div className="main">
-            <EditorSideNav />
+            <WorkshopConductorSideNav />
             <div className="container mt-3" style={{
                 marginLeft: '60px',
                 backgroundColor: '#ffffff',

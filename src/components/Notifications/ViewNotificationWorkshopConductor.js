@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import EditorSideNav from "../Navbar/EditorSideNav";
+import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
 
-export default function ViewNotification(props) {
+export default function ViewNotificationWorkshopConductor(props) {
 
     const [data, setData] = useState({
         type: "",
@@ -26,12 +26,12 @@ export default function ViewNotification(props) {
 
     function submit(e) {
         e.preventDefault();
-        props.history.push("/notifications");
+        props.history.push("/notifications-workshop-conductor");
     }
 
     return(
         <div className="main">
-            <EditorSideNav />
+            <WorkshopConductorSideNav />
             <div className="container mt-3" style={{
                 marginLeft: '60px',
                 backgroundColor: '#ccccff',
