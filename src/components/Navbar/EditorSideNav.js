@@ -15,7 +15,7 @@ export class EditorSideNav extends Component {
                     <a href="/roles"><i className="fa fa-gift"></i>&nbsp; Conference Details</a>
                     <a href="/tracks"><i className="fa fa-list-alt"></i>&nbsp; Tracks</a>
                     <a href="/roles"><i className="fa fa-list-ol"></i>&nbsp; Keynote Speakers</a>
-                    <a href="/roles"><i className="fa fa-gift"></i>&nbsp; Notifications</a>
+                    <a href="/notifications"><i className="fa fa-gift"></i>&nbsp; Notifications</a>
                 </div>
             </div>
         );

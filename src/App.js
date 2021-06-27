@@ -28,6 +28,8 @@ import AddTrack from "./components/ConferenceTracks/AddTrack";
 import ViewTrack from "./components/ConferenceTracks/ViewTrack";
 import TrackListAdmin from "./components/ConferenceTracks/TrackListAdmin";
 import ApproveRejectTrack from "./components/ConferenceTracks/ApproveRejectTrack";
+import NotificationBox from "./components/Notifications/NotificationBox";
+import ViewNotification from "./components/Notifications/ViewNotification";
 
 class App extends Component {
   constructor(props) {
@@ -133,6 +135,8 @@ class App extends Component {
                 <Route path="/track/:id" component={ViewTrack} />
                 <Route path="/tracks-admin" component={TrackListAdmin} />
                 <Route path="/track-admin/:id" component={ApproveRejectTrack} />
+                <Route path="/notifications" component={NotificationBox} />
+                <Route path="/notification/:id" component={ViewNotification} />
             </Switch>
         </div>
 
