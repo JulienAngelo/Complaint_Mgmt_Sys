@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
-import AdminSideNav from "../Navbar/AdminSideNav";
+import EditorSideNav from "../Navbar/EditorSideNav";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
-export default function TrackListAdmin(props) {
+export default function ConferenceList(props) {
 
-    const [tracks, setTracks] = useState([]);
+    const [conferences, setConferences] = useState([]);
     const columns = [
         {
             dataField: 'id',
@@ -26,8 +26,8 @@ export default function TrackListAdmin(props) {
             }
         },
         {
-            dataField: 'status',
-            text: 'Status',
+            dataField: 'year',
+            text: 'Year',
             filter: textFilter(),
             headerStyle: (column, colIndex) => {
                 return {padding: '5px', textAlign: 'center'};
@@ -53,7 +53,7 @@ export default function TrackListAdmin(props) {
                 text: '10', value: 10
             },
             {
-                text: 'All', value: tracks.length
+                text: 'All', value: conferences.length
             }
         ],
         sizePerPage: 5,
@@ -67,30 +67,30 @@ export default function TrackListAdmin(props) {
     };
 
     useEffect(() => {
-        getTracks();
+        getConferences();
     }, [])
 
-    function getTracks() {
-        axios.get("https://icaf-backend.herokuapp.com/tracks/all").then((res) => {
-            setTracks(res.data);
+    function getConferences() {
+        axios.get("https://icaf-backend.herokuapp.com/conference/all").then((res) => {
+            setConferences(res.data);
         }).catch((err) => {
             alert(err);
         })
     }
 
-    function viewTrack(trackId) {
-        props.history.push("track-admin/"+trackId)
+    function viewConference(conferenceId) {
+        props.history.push("conference/"+conferenceId)
     }
 
     function viewPageLink(cell, row, rowIndex, formatExtraData) {
         return (
-            <button className="btn btn-info btn-sm" onClick={() => viewTrack(row.id)}>View</button>
+            <button className="btn btn-info btn-sm" onClick={() => viewConference(row.id)}>View</button>
         );
     }
 
     return(
         <div className="main">
-            <AdminSideNav />
+            <EditorSideNav />
             <div className="container mt-3" style={{
                 marginLeft: '60px',
                 backgroundColor: '#ffffff',
@@ -102,7 +102,7 @@ export default function TrackListAdmin(props) {
                     <div className="container" style={{background : '#ccccff', borderRadius : '8px'}}>
                         <br/>
                         <div className="form-group row">
-                            <h3 className="col-sm-3">Tracks List</h3>
+                            <h3 className="col-sm-3">Conference List</h3>
                         </div><br/>
 
                         <div className="container" style={{
@@ -115,7 +115,7 @@ export default function TrackListAdmin(props) {
                                 keyField='id'
                                 striped
                                 hover
-                                data={tracks}
+                                data={conferences}
                                 columns={columns}
                                 filter={filterFactory()}
                                 pagination={paginationFactory(options)} />
