@@ -23,6 +23,9 @@ import ViewRole from "./components/Roles/ViewRole";
 import ConferenceListAdmin from "./components/Conference/ConferenceListAdmin";
 import AddConference from "./components/Conference/AddConference";
 import ViewConferenceAdmin from "./components/Conference/ViewConferenceAdmin";
+import TrackList from "./components/ConferenceTracks/TrackList";
+import AddTrack from "./components/ConferenceTracks/AddTrack";
+import ViewTrack from "./components/ConferenceTracks/ViewTrack";
 
 class App extends Component {
   constructor(props) {
@@ -123,6 +126,9 @@ class App extends Component {
                 <Route path="/conferences-admin" component={ConferenceListAdmin} />
                 <Route path="/conference/add" component={AddConference} />
                 <Route path="/conference-admin/view/:id" component={ViewConferenceAdmin} />
+                <Route path="/tracks" component={TrackList} />
+                <Route path="/track/add" component={AddTrack} />
+                <Route path="/track/:id" component={ViewTrack} />
             </Switch>
         </div>
 

@@ -1,25 +1,23 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import AdminSideNav from "../Navbar/AdminSideNav";
+import EditorSideNav from "../Navbar/EditorSideNav";
 
-export default function ViewConferenceAdmin(props) {
+export default function ViewTrack(props) {
 
     const [data, setData] = useState({
         id: "",
         name: "",
-        year: "",
-        description: "",
-        venue: "",
+        imageURL: "",
         status: ""
     });
 
     useEffect(() => {
-        getConference();
+        getTrack();
     }, [])
 
-    function getConference() {
-        const conferenceId = props.match.params.id;
-        axios.get("https://icaf-backend.herokuapp.com/conference/" + conferenceId).then((res) => {
+    function getTrack() {
+        const trackId = props.match.params.id;
+        axios.get("https://icaf-backend.herokuapp.com/tracks/" + trackId).then((res) => {
             console.log(res.data);
             setData(res.data);
         }).catch((err) => {
@@ -29,18 +27,16 @@ export default function ViewConferenceAdmin(props) {
 
     function submit(e) {
         e.preventDefault();
-        const conferenceId = props.match.params.id;
-        axios.put("https://icaf-backend.herokuapp.com/conference/" + conferenceId, data).then((res) => {
+        const trackId = props.match.params.id;
+        axios.put("https://icaf-backend.herokuapp.com/tracks/" + trackId, data).then((res) => {
             console.log(data);
             alert(res.data.messages);
-            props.history.push("/conferences-admin");
+            props.history.push("/tracks");
         }).catch((err) => {
             if(err.response.data.name !== undefined) {
                 alert(err.response.data.name);
-            } else if(err.response.data.year !== undefined) {
-                alert(err.response.data.year);
-            } else if(err.response.data.venue !== undefined) {
-                alert(err.response.data.venue);
+            } else if(err.response.data.imageURL !== undefined) {
+                alert(err.response.data.imageURL);
             } else if(err.response.data.status !== undefined) {
                 alert(err.response.data.status);
             } else if(err.response.data.message !== undefined) {
@@ -59,7 +55,7 @@ export default function ViewConferenceAdmin(props) {
 
     return(
         <div className="main">
-            <AdminSideNav />
+            <EditorSideNav />
             <div className="container mt-3" style={{
                 marginLeft: '60px',
                 backgroundColor: '#ccccff',
@@ -70,7 +66,7 @@ export default function ViewConferenceAdmin(props) {
                 <br/>
                 <div className="card" style={{width : '60%', marginTop: 0, marginLeft : '15px', borderRadius: '5px'}}>
                     <div className="card-header" style={{backgroundColor: '#f2f2f2'}}>
-                        <h4>Conference</h4>
+                        <h4>Track</h4>
                     </div>
                     <div className="card-body">
                         <form onSubmit={(e) => submit(e)}>
@@ -87,21 +83,9 @@ export default function ViewConferenceAdmin(props) {
                                 </div>
                             </div><br/>
                             <div className="form-group row">
-                                <label htmlFor="year" className="col-sm-3">Year</label>
+                                <label htmlFor="imageURL" className="col-sm-3">Image</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="year" placeholder="Enter Year" value={data.year} required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="venue" className="col-sm-3">Venue</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="venue" placeholder="Enter Venue" value={data.venue} required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="description" className="col-sm-3">Description</label>
-                                <div className="col-sm-5">
-                                    <textarea className="form-control" onChange={(e) => handle(e)} id="description" cols="30" rows="6" placeholder="Enter Description" value={data.description} />
+                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="imageURL" placeholder="Enter Image" value={data.imageURL} />
                                 </div>
                             </div><br/>
                             <div className="form-group row">

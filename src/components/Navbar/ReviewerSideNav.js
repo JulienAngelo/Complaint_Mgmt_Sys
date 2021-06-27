@@ -10,7 +10,7 @@ export default class ReviewerSideNav extends Component {
         return (
             <div>
                 <div className="sidenav" >
-                    <a href="/admin" ><i className="fa fa-dashboard"></i>&nbsp; Dashboard</a>
+                    <a href="/reviewer" ><i className="fa fa-dashboard"></i>&nbsp; Dashboard</a>
                     <a href="/roles"><i className="fa fa-th-list"></i>&nbsp; Research</a>
                     <a href="/roles"><i className="fa fa-gift"></i>&nbsp; Workshops</a>
                 </div>

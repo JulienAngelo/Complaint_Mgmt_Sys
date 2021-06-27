@@ -10,7 +10,7 @@ export default class ResearcherSideNav extends Component {
         return (
             <div>
                 <div className="sidenav" >
-                    <a href="/admin" ><i className="fa fa-dashboard"></i>&nbsp; Dashboard</a>
+                    <a href="/researcher" ><i className="fa fa-dashboard"></i>&nbsp; Dashboard</a>
                     <a href="/roles"><i className="fa fa-th-list"></i>&nbsp; Research</a>
                     <a href="/roles"><i className="fa fa-gift"></i>&nbsp; Notifications</a>
                 </div>
