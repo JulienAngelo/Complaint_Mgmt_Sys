@@ -7,8 +7,7 @@ export default function ViewTrack(props) {
     const [data, setData] = useState({
         id: "",
         name: "",
-        imageURL: "",
-        status: ""
+        imageURL: ""
     });
 
     useEffect(() => {
@@ -37,8 +36,6 @@ export default function ViewTrack(props) {
                 alert(err.response.data.name);
             } else if(err.response.data.imageURL !== undefined) {
                 alert(err.response.data.imageURL);
-            } else if(err.response.data.status !== undefined) {
-                alert(err.response.data.status);
             } else if(err.response.data.message !== undefined) {
                 alert(err.response.data.message);
             } else {
@@ -86,16 +83,6 @@ export default function ViewTrack(props) {
                                 <label htmlFor="imageURL" className="col-sm-3">Image</label>
                                 <div className="col-sm-5">
                                     <input type="text" className="form-control" onChange={(e) => handle(e)} id="imageURL" placeholder="Enter Image" value={data.imageURL} />
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="status" className="col-sm-3">Status</label>
-                                <div className="col-sm-5">
-                                    <select className="form-control" onChange={(e) => handle(e)} id="status" value={data.status} required>
-                                        <option defaultValue disabled>{data.status}</option>
-                                        <option value="ACTIVE">ACTIVE</option>
-                                        <option value="INACTIVE">INACTIVE</option>
-                                    </select>
                                 </div>
                             </div><br/>
                             <button type="submit" className="btn btn-primary">Update</button>

@@ -5,9 +5,9 @@ import AdminSideNav from "../Navbar/AdminSideNav";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
-export default function ConferenceListAdmin(props) {
+export default function TrackListAdmin(props) {
 
-    const [conferences, setConferences] = useState([]);
+    const [tracks, setTracks] = useState([]);
     const columns = [
         {
             dataField: 'id',
@@ -26,26 +26,17 @@ export default function ConferenceListAdmin(props) {
             }
         },
         {
-            dataField: 'year',
-            text: 'Year',
-            sort: true,
+            dataField: 'status',
+            text: 'Status',
+            filter: textFilter(),
             headerStyle: (column, colIndex) => {
                 return {padding: '5px', textAlign: 'center'};
             }
         },
         {
             dataField: "",
-            text: 'Edit',
+            text: 'View',
             formatter: viewPageLink,
-            sort: true,
-            headerStyle: (column, colIndex) => {
-                return {padding: '5px', textAlign: 'center'};
-            }
-        },
-        {
-            dataField: "",
-            text: 'Delete',
-            formatter: deletePageLink,
             sort: true,
             headerStyle: (column, colIndex) => {
                 return {padding: '5px', textAlign: 'center'};
@@ -62,7 +53,7 @@ export default function ConferenceListAdmin(props) {
                 text: '10', value: 10
             },
             {
-                text: 'All', value: conferences.length
+                text: 'All', value: tracks.length
             }
         ],
         sizePerPage: 5,
@@ -76,31 +67,27 @@ export default function ConferenceListAdmin(props) {
     };
 
     useEffect(() => {
-        getConferences();
+        getTracks();
     }, [])
 
-    function getConferences() {
-        axios.get("https://icaf-backend.herokuapp.com/conference/all").then((res) => {
-            setConferences(res.data);
+    function getTracks() {
+        axios.get("https://icaf-backend.herokuapp.com/tracks/all").then((res) => {
+            setTracks(res.data);
         }).catch((err) => {
             alert(err);
         })
     }
 
-    function addConference() {
-        props.history.push("conference/add")
+    function viewTrack(trackId) {
+        props.history.push("track-admin/"+trackId)
     }
 
-    function viewConference(conferenceId) {
-        props.history.push("conference-admin/"+conferenceId)
-    }
-
-    function deleteConference(conferenceId) {
+    function deleteTrack(trackId) {
         if(window.confirm("Do you want to delete this record?")) {
-            axios.delete("https://icaf-backend.herokuapp.com/conference/"+conferenceId).then((res) => {
+            axios.delete("https://icaf-backend.herokuapp.com/tracks/"+trackId).then((res) => {
                 alert(res.data.messages);
-                const currentData = conferences.filter(conference =>  conference.id !== conferenceId);
-                setConferences(currentData);
+                const currentData = tracks.filter(track =>  track.id !== trackId);
+                setTracks(currentData);
             }).catch((err) => {
                 alert(err);
             })
@@ -111,13 +98,7 @@ export default function ConferenceListAdmin(props) {
 
     function viewPageLink(cell, row, rowIndex, formatExtraData) {
         return (
-            <button className="btn btn-info btn-sm" onClick={() => viewConference(row.id)}>Edit</button>
-        );
-    }
-
-    function deletePageLink(cell, row, rowIndex, formatExtraData) {
-        return (
-            <button className="btn btn-danger btn-sm" onClick={() => deleteConference(row.id)}>Delete</button>
+            <button className="btn btn-info btn-sm" onClick={() => viewTrack(row.id)}>View</button>
         );
     }
 
@@ -135,10 +116,7 @@ export default function ConferenceListAdmin(props) {
                     <div className="container" style={{background : '#ccccff', borderRadius : '8px'}}>
                         <br/>
                         <div className="form-group row">
-                            <h3 className="col-sm-3">Conference List</h3>
-                            <div className="col-sm-5">
-                                <button className="btn btn-success" onClick={() => addConference()}>+ Add Conference</button>
-                            </div>
+                            <h3 className="col-sm-3">Tracks List</h3>
                         </div><br/>
 
                         <div className="container" style={{
@@ -151,7 +129,7 @@ export default function ConferenceListAdmin(props) {
                                 keyField='id'
                                 striped
                                 hover
-                                data={conferences}
+                                data={tracks}
                                 columns={columns}
                                 filter={filterFactory()}
                                 pagination={paginationFactory(options)} />
