@@ -15,8 +15,8 @@ export class AdminSideNav extends Component {
                     <a href="/conference-details-admin"><i className="fa fa-gift"></i>&nbsp; Conference Details</a>
                     <a href="/tracks-admin"><i className="fa fa-list-alt"></i>&nbsp; Tracks</a>
                     <a href="/keynote-speakers-admin"><i className="fa fa-list-ol"></i>&nbsp; Keynote Speakers</a>
-                    <a href="/researches-reviewer"><i className="fa fa-shopping-cart"></i>&nbsp; Research</a>
-                    <a href="/workshops-reviewer"><i className="fa fa-cc-visa"></i>&nbsp; Workshops</a>
+                    <a href="/researches-admin"><i className="fa fa-shopping-cart"></i>&nbsp; Research</a>
+                    <a href="/workshops-admin"><i className="fa fa-cc-visa"></i>&nbsp; Workshops</a>
                     <a href="/roles"><i className="fa fa-commenting-o"></i>&nbsp; Users</a>
                     <a href="/roles"><i className="fa fa-users"></i>&nbsp; Roles</a>
                 </div>

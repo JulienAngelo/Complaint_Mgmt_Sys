@@ -51,11 +51,15 @@ import AddResearch from "./components/Research/AddResearch";
 import ViewResearch from "./components/Research/ViewResearch";
 import ResearchListReviewer from "./components/Research/ResearchListReviewer";
 import ApproveRejectResearch from "./components/Research/ApproveRejectResearch";
+import ResearchListAdmin from "./components/Research/ResearchListAdmin";
+import ViewResearchAdmin from "./components/Research/ViewResearchAdmin";
 import WorkshopList from "./components/Workshops/WorkshopList";
 import AddWorkshop from "./components/Workshops/AddWorkshop";
 import ViewWorkshop from "./components/Workshops/ViewWorkshop";
 import WorkshopListReviewer from "./components/Workshops/WorkshopListReviewer";
 import ApproveRejectWorkshop from "./components/Workshops/ApproveRejectWorkshop";
+import WorkshopListAdmin from "./components/Workshops/WorkshopListAdmin";
+import ViewWorkshopAdmin from "./components/Workshops/ViewWorkshopAdmin";
 
 class App extends Component {
   constructor(props) {
@@ -184,11 +188,15 @@ class App extends Component {
                 <Route path="/research/:id" component={ViewResearch} />
                 <Route path="/researches-reviewer" component={ResearchListReviewer} />
                 <Route path="/research-reviewer/:id" component={ApproveRejectResearch} />
+                <Route path="/researches-admin" component={ResearchListAdmin} />
+                <Route path="/research-admin/:id" component={ViewResearchAdmin} />
                 <Route path="/workshops" component={WorkshopList} />
                 <Route path="/workshop/add" component={AddWorkshop} />
                 <Route path="/workshop/:id" component={ViewWorkshop} />
                 <Route path="/workshops-reviewer" component={WorkshopListReviewer} />
                 <Route path="/workshop-reviewer/:id" component={ApproveRejectWorkshop} />
+                <Route path="/workshops-admin" component={WorkshopListAdmin} />
+                <Route path="/workshop-admin/:id" component={ViewWorkshopAdmin} />
             </Switch>
         </div>
 
