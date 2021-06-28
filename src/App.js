@@ -36,6 +36,11 @@ import NotificationBoxWorkshopConductor from "./components/Notifications/Notific
 import ViewNotificationWorkshopConductor from "./components/Notifications/ViewNotificationWorkshopConductor";
 import ConferenceList from "./components/Conference/ConferenceList";
 import ViewConference from "./components/Conference/ViewConference";
+import KeyNoteSpeakerList from "./components/KeynoteSpeakers/KeyNoteSpeakerList";
+import AddKeyNoteSpeaker from "./components/KeynoteSpeakers/AddKeyNoteSpeaker";
+import ViewKeyNoteSpeaker from "./components/KeynoteSpeakers/ViewKeyNoteSpeaker";
+import KeyNoteSpeakerListAdmin from "./components/KeynoteSpeakers/KeyNoteSpeakerListAdmin";
+import ApproveRejectKeyNoteSpeaker from "./components/KeynoteSpeakers/ApproveRejectKeyNoteSpeaker";
 
 class App extends Component {
   constructor(props) {
@@ -149,6 +154,11 @@ class App extends Component {
                 <Route path="/notification-workshop-conductor/:id" component={ViewNotificationWorkshopConductor} />
                 <Route path="/conferences" component={ConferenceList} />
                 <Route path="/conference/:id" component={ViewConference} />
+                <Route path="/keynote-speakers" component={KeyNoteSpeakerList} />
+                <Route path="/keynote-speaker/add" component={AddKeyNoteSpeaker} />
+                <Route path="/keynote-speaker/:id" component={ViewKeyNoteSpeaker} />
+                <Route path="/keynote-speakers-admin" component={KeyNoteSpeakerListAdmin} />
+                <Route path="/keynote-speaker-admin/:id" component={ApproveRejectKeyNoteSpeaker} />
             </Switch>
         </div>
 

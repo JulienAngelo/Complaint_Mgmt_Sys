@@ -51,7 +51,7 @@ export default function AddConference(props) {
                 <br/>
                 <div className="card" style={{width : '60%', marginTop: 0, marginLeft : '15px', borderRadius: '5px'}}>
                     <div className="card-header" style={{backgroundColor: '#f2f2f2'}}>
-                        <h4>Add Conference</h4>
+                        <h4>Conference</h4>
                     </div>
                     <div className="card-body">
                         <form onSubmit={(e) => submit(e)}>

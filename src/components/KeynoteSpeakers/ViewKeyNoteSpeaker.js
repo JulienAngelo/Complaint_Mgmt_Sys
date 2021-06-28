@@ -1,29 +1,47 @@
-import React, {useState} from "react";
-import EditorSideNav from "../Navbar/EditorSideNav";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
+import EditorSideNav from "../Navbar/EditorSideNav";
 
-export default function AddKeyNoteSpeaker(props) {
+export default function ViewKeyNoteSpeaker(props) {
 
     const [data, setData] = useState({
+        id: "",
         name: "",
         designation: "",
         description: "",
         imageURL: ""
-    })
+    });
+
+    useEffect(() => {
+        getKeyNoteSpeaker();
+    }, [])
+
+    function getKeyNoteSpeaker() {
+        const keyNoteSpeakerId = props.match.params.id;
+        axios.get("https://icaf-backend.herokuapp.com/keynote-speakers/" + keyNoteSpeakerId).then((res) => {
+            console.log(res.data);
+            setData(res.data);
+        }).catch((err) => {
+            alert(err);
+        })
+    }
 
     function submit(e) {
         e.preventDefault();
-        axios.post("https://icaf-backend.herokuapp.com/keynote-speakers/save", data).then((res) => {
+        const keyNoteSpeakerId = props.match.params.id;
+        axios.put("https://icaf-backend.herokuapp.com/keynote-speakers/" + keyNoteSpeakerId, data).then((res) => {
             console.log(data);
             alert(res.data.messages);
             props.history.push("/keynote-speakers");
         }).catch((err) => {
             if(err.response.data.name !== undefined) {
                 alert(err.response.data.name);
-            } else if(err.response.data.designation !== undefined) {
-                alert(err.response.data.designation);
             } else if(err.response.data.imageURL !== undefined) {
+                alert(err.response.data.designation);
+            } else if(err.response.data.designation !== undefined) {
                 alert(err.response.data.imageURL);
+            } else if(err.response.data.message !== undefined) {
+                alert(err.response.data.message);
             } else {
                 alert(err);
             }
@@ -54,30 +72,36 @@ export default function AddKeyNoteSpeaker(props) {
                     <div className="card-body">
                         <form onSubmit={(e) => submit(e)}>
                             <div className="form-group row">
+                                <label htmlFor="id" className="col-sm-3">Id</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="id" value={data.id} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
                                 <label htmlFor="name" className="col-sm-3">Name</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="name" placeholder="Enter Name" value={data.name} required/>
+                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="name" placeholder="Enter Name" value={data.name} required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="designation" className="col-sm-3">Designation</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="designation" placeholder="Enter Designation" value={data.designation} required/>
+                                    <textarea className="form-control" onChange={(e) => handle(e)} id="designation" cols="30" rows="6" placeholder="Enter Designation" value={data.designation} required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="description" className="col-sm-3">Description</label>
                                 <div className="col-sm-5">
-                                    <textarea onChange={(e) => handle(e)} className="form-control" id="description" cols="30" rows="6" placeholder="Enter Description" value={data.description} />
+                                    <textarea className="form-control" onChange={(e) => handle(e)} id="description" cols="30" rows="6" placeholder="Enter Description" value={data.description} />
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="imageURL" className="col-sm-3">Image</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="imageURL" placeholder="Enter Image" value={data.imageURL} required/>
+                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="imageURL" placeholder="Enter Image" value={data.imageURL} />
                                 </div>
                             </div><br/>
-                            <button type="submit" className="btn btn-primary">Save</button>
+                            <button type="submit" className="btn btn-primary">Update</button>
                         </form>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ export default function ViewNotificationEditor(props) {
 
     function submit(e) {
         e.preventDefault();
-        props.history.push("/notifications");
+        props.history.push("/notifications-editor");
     }
 
     return(
