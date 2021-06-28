@@ -12,7 +12,7 @@ export class AdminSideNav extends Component {
                 <div className="sidenav" >
                     <a href="/admin" ><i className="fa fa-dashboard"></i>&nbsp; Dashboard</a>
                     <a href="/conferences-admin"><i className="fa fa-th-list"></i>&nbsp; Conference</a>
-                    <a href="/roles"><i className="fa fa-gift"></i>&nbsp; Conference Details</a>
+                    <a href="/conference-details-admin"><i className="fa fa-gift"></i>&nbsp; Conference Details</a>
                     <a href="/tracks-admin"><i className="fa fa-list-alt"></i>&nbsp; Tracks</a>
                     <a href="/keynote-speakers-admin"><i className="fa fa-list-ol"></i>&nbsp; Keynote Speakers</a>
                     <a href="/researches-reviewer"><i className="fa fa-shopping-cart"></i>&nbsp; Research</a>

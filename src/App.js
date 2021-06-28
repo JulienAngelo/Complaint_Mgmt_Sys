@@ -28,6 +28,8 @@ import ViewConference from "./components/Conference/ViewConference";
 import ConferenceDetailsList from "./components/ConferenceDetails/ConferenceDetailsList";
 import AddConferenceDetails from "./components/ConferenceDetails/AddConferenceDetails";
 import ViewConferenceDetails from "./components/ConferenceDetails/ViewConferenceDetails";
+import ConferenceDetailsListAdmin from "./components/ConferenceDetails/ConferenceDetailsListAdmin";
+import ApproveRejectConferenceDetails from "./components/ConferenceDetails/ApproveRejectConferenceDetails";
 import TrackList from "./components/ConferenceTracks/TrackList";
 import AddTrack from "./components/ConferenceTracks/AddTrack";
 import ViewTrack from "./components/ConferenceTracks/ViewTrack";
@@ -159,6 +161,8 @@ class App extends Component {
                 <Route path="/conference-details" component={ConferenceDetailsList} />
                 <Route path="/conference-detail/add" component={AddConferenceDetails} />
                 <Route path="/conference-detail/:id" component={ViewConferenceDetails} />
+                <Route path="/conference-details-admin" component={ConferenceDetailsListAdmin} />
+                <Route path="/conference-detail-admin/:id" component={ApproveRejectConferenceDetails} />
                 <Route path="/tracks" component={TrackList} />
                 <Route path="/track/add" component={AddTrack} />
                 <Route path="/track/:id" component={ViewTrack} />
