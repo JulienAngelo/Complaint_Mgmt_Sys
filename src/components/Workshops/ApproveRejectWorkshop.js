@@ -108,15 +108,15 @@ export default function ApproveRejectWorkshop(props) {
                                 </div>
                             </div><br/>
                             <div className="form-group row">
-                                <label htmlFor="name" className="col-sm-3">Name</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="name" value={data.name} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
                                 <label htmlFor="topic" className="col-sm-3">Topic</label>
                                 <div className="col-sm-5">
                                     <input type="text" className="form-control" id="topic" value={data.topic} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="name" className="col-sm-3">Name</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="name" value={data.name} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

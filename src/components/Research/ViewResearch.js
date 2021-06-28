@@ -38,8 +38,6 @@ export default function ViewResearch(props) {
         }).catch((err) => {
             if(err.response.data.name !== undefined) {
                 alert(err.response.data.name);
-            } else if(err.response.data.topic !== undefined) {
-                alert(err.response.data.topic);
             } else if(err.response.data.documentURL !== undefined) {
                 alert(err.response.data.documentURL);
             } else if(err.response.data.conferenceDetailsId !== undefined) {
@@ -90,15 +88,15 @@ export default function ViewResearch(props) {
                                 </div>
                             </div><br/>
                             <div className="form-group row">
-                                <label htmlFor="name" className="col-sm-3">Name</label>
+                                <label htmlFor="topic" className="col-sm-3">Topic</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="name" placeholder="Enter Name" value={data.name} required/>
+                                    <input type="text" className="form-control" id="topic" value={data.topic} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
-                                <label htmlFor="topic" className="col-sm-3">Topic</label>
+                                <label htmlFor="name" className="col-sm-3">Name</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="topic" placeholder="Enter Topic" value={data.topic} required/>
+                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="name" placeholder="Enter Name" value={data.name} required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

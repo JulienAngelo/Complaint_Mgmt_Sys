@@ -7,7 +7,6 @@ export default function AddResearch(props) {
     const [data, setData] = useState({
         conferenceDetailsId: "",
         name: "",
-        topic: "",
         description: "",
         publishedDate: "",
         documentURL: ""
@@ -71,12 +70,6 @@ export default function AddResearch(props) {
                                 <label htmlFor="name" className="col-sm-3">Name</label>
                                 <div className="col-sm-5">
                                     <input type="text" onChange={(e) => handle(e)} className="form-control" id="name" placeholder="Enter Name" value={data.name} required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="topic" className="col-sm-3">Topic</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="topic" placeholder="Enter Topic" value={data.topic} required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

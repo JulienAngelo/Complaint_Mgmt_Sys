@@ -7,6 +7,7 @@ export default function ViewWorkshop(props) {
     const [data, setData] = useState({
         id: "",
         conferenceDetailsId: "",
+        topic: "",
         name: "",
         description: "",
         documentURL: ""
@@ -79,6 +80,12 @@ export default function ViewWorkshop(props) {
                                 <label htmlFor="conferenceDetailsId" className="col-sm-3">Conference Details Id</label>
                                 <div className="col-sm-5">
                                     <input type="text" className="form-control" id="conferenceDetailsId" value={data.conferenceDetailsId} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="topic" className="col-sm-3">Topic</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="topic" value={data.topic} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
