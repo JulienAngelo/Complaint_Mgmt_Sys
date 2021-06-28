@@ -41,6 +41,10 @@ import AddKeyNoteSpeaker from "./components/KeynoteSpeakers/AddKeyNoteSpeaker";
 import ViewKeyNoteSpeaker from "./components/KeynoteSpeakers/ViewKeyNoteSpeaker";
 import KeyNoteSpeakerListAdmin from "./components/KeynoteSpeakers/KeyNoteSpeakerListAdmin";
 import ApproveRejectKeyNoteSpeaker from "./components/KeynoteSpeakers/ApproveRejectKeyNoteSpeaker";
+import ResearchListReviewer from "./components/Research/ResearchListReviewer";
+import ApproveRejectResearch from "./components/Research/ApproveRejectResearch";
+import WorkshopListReviewer from "./components/Workshops/WorkshopListReviewer";
+import ApproveRejectWorkshop from "./components/Workshops/ApproveRejectWorkshop";
 
 class App extends Component {
   constructor(props) {
@@ -159,6 +163,10 @@ class App extends Component {
                 <Route path="/keynote-speaker/:id" component={ViewKeyNoteSpeaker} />
                 <Route path="/keynote-speakers-admin" component={KeyNoteSpeakerListAdmin} />
                 <Route path="/keynote-speaker-admin/:id" component={ApproveRejectKeyNoteSpeaker} />
+                <Route path="/researches-reviewer" component={ResearchListReviewer} />
+                <Route path="/research-reviewer/:id" component={ApproveRejectResearch} />
+                <Route path="/workshops-reviewer" component={WorkshopListReviewer} />
+                <Route path="/workshop-reviewer/:id" component={ApproveRejectWorkshop} />
             </Switch>
         </div>
 
