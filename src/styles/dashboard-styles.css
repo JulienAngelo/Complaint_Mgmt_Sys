@@ -13,43 +13,48 @@
     transition: .3s linear all;
 }
 
-.card-counter.items{
+.card-counter.conf-det{
     background-color: #007bff;
     color: #FFF;
 }
 
-.card-counter.categories{
+.card-counter.users{
     background-color: #00802b;
     color: #FFF;
 }
 
-.card-counter.brands{
-    background-color: #e6b800;
+.card-counter.tracks{
+    background-color: #660066;
     color: #FFF;
 }
 
-.card-counter.sellers{
+.card-counter.blacks{
     background-color: #000000;
     color: #FFF;
 }
 
 .card-counter.buyers{
-    background-color: #884dff;
+    background-color: #ff9900;
     color: #FFF;
 }
 
 .card-counter.orders{
-    background-color: #ff9933;
+    background-color: #000033;
     color: #FFF;
 }
 
-.card-counter.deliveries{
+.card-counter.conf{
     background-color: #000080;
     color: #FFF;
 }
 
-.card-counter.complains{
+.card-counter.reds{
     background-color: #e60000;
+    color: #FFF;
+}
+
+.card-counter.browns{
+    background-color: #663300;
     color: #FFF;
 }
 

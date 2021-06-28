@@ -28,67 +28,51 @@ export default function EditorDashboard(props) {
             <h3>Editor Dashboard</h3><br/>
             <div className="row ">
               <div className="col-md-3">
-                <div className="card-counter items">
-                  <i className="fa fa-shopping-cart"></i>
+                <div className="card-counter conf">
+                  <i className="fa fa-globe"></i>
                   <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
-                  <span className="count-name">Items</span>
+                  <span className="count-name">Conferences</span>
                 </div>
               </div>
 
               <div className="col-md-3">
-                <div className="card-counter categories">
+                <div className="card-counter conf-det">
                   <i className="fa fa-th-list"></i>
                   <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
-                  <span className="count-name">Categories</span>
+                  <span className="count-name">Conference<br/>Details</span>
                 </div>
               </div>
 
               <div className="col-md-3">
-                <div className="card-counter brands">
-                  <i className="fa fa-gift"></i>
+                <div className="card-counter tracks">
+                  <i className="fa fa-object-group"></i>
                   <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
-                  <span className="count-name">Brands</span>
+                  <span className="count-name">Tracks</span>
                 </div>
               </div>
 
               <div className="col-md-3">
-                <div className="card-counter sellers">
-                  <i className="fa fa-user-secret"></i>
+                <div className="card-counter browns">
+                  <i className="fa fa-handshake-o"></i>
                   <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
-                  <span className="count-name">Sellers</span>
+                  <span className="count-name">Keynote<br/>Speakers</span>
                 </div>
               </div>
             </div><br/>
             <div className="row ">
               <div className="col-md-3">
                 <div className="card-counter buyers">
-                  <i className="fa fa-users"></i>
+                  <i className="fa fa-file-text-o"></i>
                   <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
-                  <span className="count-name">Buyers</span>
+                  <span className="count-name">Researches</span>
                 </div>
               </div>
 
               <div className="col-md-3">
                 <div className="card-counter orders">
-                  <i className="fa fa-money"></i>
+                  <i className="fa fa-code"></i>
                   <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
-                  <span className="count-name">Orders</span>
-                </div>
-              </div>
-
-              <div className="col-md-3">
-                <div className="card-counter deliveries">
-                  <i className="fa fa-truck"></i>
-                  <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
-                  <span className="count-name">Deliveries</span>
-                </div>
-              </div>
-
-              <div className="col-md-3">
-                <div className="card-counter complains">
-                  <i className="fa fa-frown-o"></i>
-                  <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
-                  <span className="count-name">Complains</span>
+                  <span className="count-name">Workshops</span>
                 </div>
               </div>
             </div>
