@@ -1,11 +1,14 @@
-import React, {useState} from "react";
-import EditorSideNav from "../Navbar/EditorSideNav";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
+import EditorSideNav from "../Navbar/EditorSideNav";
 
-export default function AddConferenceDetails(props) {
+export default function ViewConferenceDetails(props) {
 
     const [data, setData] = useState({
+        id: "",
         conferenceId: "",
+        conferenceName: "",
+        conferenceYear: "",
         topic: "",
         description: "",
         conductor: "",
@@ -14,11 +17,26 @@ export default function AddConferenceDetails(props) {
         startTime: "",
         endTime: "",
         payment: ""
-    })
+    });
+
+    useEffect(() => {
+        getConferenceDetail();
+    }, [])
+
+    function getConferenceDetail() {
+        const conferenceDetailsId = props.match.params.id;
+        axios.get("https://icaf-backend.herokuapp.com/conference-details/" + conferenceDetailsId).then((res) => {
+            console.log(res.data);
+            setData(res.data);
+        }).catch((err) => {
+            alert(err);
+        })
+    }
 
     function submit(e) {
         e.preventDefault();
-        axios.post("https://icaf-backend.herokuapp.com/conference-details/save", data).then((res) => {
+        const conferenceDetailsId = props.match.params.id;
+        axios.put("https://icaf-backend.herokuapp.com/conference-details/" + conferenceDetailsId, data).then((res) => {
             console.log(data);
             alert(res.data.messages);
             props.history.push("/conference-details");
@@ -27,8 +45,6 @@ export default function AddConferenceDetails(props) {
                 alert(err.response.data.topic);
             } else if(err.response.data.conductor !== undefined) {
                 alert(err.response.data.conductor);
-            } else if(err.response.data.conferenceId !== undefined) {
-                alert(err.response.data.conferenceId);
             } else if(err.response.data.venue !== undefined) {
                 alert(err.response.data.venue);
             } else if(err.response.data.date !== undefined) {
@@ -61,31 +77,43 @@ export default function AddConferenceDetails(props) {
                 backgroundColor: '#ccccff',
                 boxShadow: '1px 2px 2px 2px rgba(0.3, 0.3, 0.3, 0.3)',
                 borderRadius: '5px',
-                height : '1200px'
+                height : '1300px'
             }}>
                 <br/>
-                <div className="card" style={{width : '70%', marginTop: 0, marginLeft : '15px', borderRadius: '5px'}}>
+                <div className="card" style={{width : '72%', marginTop: 0, marginLeft : '15px', borderRadius: '5px'}}>
                     <div className="card-header" style={{backgroundColor: '#f2f2f2'}}>
                         <h4>Conference Details</h4>
                     </div>
                     <div className="card-body">
                         <form onSubmit={(e) => submit(e)}>
                             <div className="form-group row">
-                                <label htmlFor="conferenceId" className="col-sm-3">Conference</label>
+                                <label htmlFor="id" className="col-sm-3">Id</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="conferenceId" placeholder="Enter Conference" value={data.conferenceId} required/>
+                                    <input type="text" className="form-control" id="id" value={data.id} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="conferenceId" className="col-sm-3">Conference Id</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="conferenceId" value={data.conferenceId} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="conferenceName" className="col-sm-3">Conference Name</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="conferenceName" value={data.conferenceName} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="topic" className="col-sm-3">Topic</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="topic" placeholder="Enter Topic" value={data.topic} required/>
+                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="topic" placeholder="Enter Topic" value={data.topic} required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="description" className="col-sm-3">Description</label>
                                 <div className="col-sm-5">
-                                    <textarea onChange={(e) => handle(e)} className="form-control" id="description" cols="30" rows="6" placeholder="Enter Description" value={data.description} required/>
+                                    <textarea className="form-control" onChange={(e) => handle(e)} id="description" cols="30" rows="6" placeholder="Enter Description" value={data.description} />
                                 </div>
                             </div><br/>
                             <div className="form-group row">
@@ -124,7 +152,7 @@ export default function AddConferenceDetails(props) {
                                     <input type="text" onChange={(e) => handle(e)} className="form-control" id="payment" placeholder="Enter Payment" value={data.payment} required/>
                                 </div>
                             </div><br/>
-                            <button type="submit" className="btn btn-primary">Save</button>
+                            <button type="submit" className="btn btn-primary">Update</button>
                         </form>
                     </div>
                 </div>

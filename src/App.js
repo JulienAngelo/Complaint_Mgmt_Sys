@@ -23,6 +23,11 @@ import ViewRole from "./components/Roles/ViewRole";
 import ConferenceListAdmin from "./components/Conference/ConferenceListAdmin";
 import AddConference from "./components/Conference/AddConference";
 import ViewConferenceAdmin from "./components/Conference/ViewConferenceAdmin";
+import ConferenceList from "./components/Conference/ConferenceList";
+import ViewConference from "./components/Conference/ViewConference";
+import ConferenceDetailsList from "./components/ConferenceDetails/ConferenceDetailsList";
+import AddConferenceDetails from "./components/ConferenceDetails/AddConferenceDetails";
+import ViewConferenceDetails from "./components/ConferenceDetails/ViewConferenceDetails";
 import TrackList from "./components/ConferenceTracks/TrackList";
 import AddTrack from "./components/ConferenceTracks/AddTrack";
 import ViewTrack from "./components/ConferenceTracks/ViewTrack";
@@ -34,8 +39,6 @@ import NotificationBoxResearcher from "./components/Notifications/NotificationBo
 import ViewNotificationResearcher from "./components/Notifications/ViewNotificationResearcher";
 import NotificationBoxWorkshopConductor from "./components/Notifications/NotificationBoxWorkshopConductor";
 import ViewNotificationWorkshopConductor from "./components/Notifications/ViewNotificationWorkshopConductor";
-import ConferenceList from "./components/Conference/ConferenceList";
-import ViewConference from "./components/Conference/ViewConference";
 import KeyNoteSpeakerList from "./components/KeynoteSpeakers/KeyNoteSpeakerList";
 import AddKeyNoteSpeaker from "./components/KeynoteSpeakers/AddKeyNoteSpeaker";
 import ViewKeyNoteSpeaker from "./components/KeynoteSpeakers/ViewKeyNoteSpeaker";
@@ -151,6 +154,11 @@ class App extends Component {
                 <Route path="/conferences-admin" component={ConferenceListAdmin} />
                 <Route path="/conference/add" component={AddConference} />
                 <Route path="/conference-admin/:id" component={ViewConferenceAdmin} />
+                <Route path="/conferences" component={ConferenceList} />
+                <Route path="/conference/:id" component={ViewConference} />
+                <Route path="/conference-details" component={ConferenceDetailsList} />
+                <Route path="/conference-detail/add" component={AddConferenceDetails} />
+                <Route path="/conference-detail/:id" component={ViewConferenceDetails} />
                 <Route path="/tracks" component={TrackList} />
                 <Route path="/track/add" component={AddTrack} />
                 <Route path="/track/:id" component={ViewTrack} />
@@ -162,8 +170,6 @@ class App extends Component {
                 <Route path="/notification-researcher/:id" component={ViewNotificationResearcher} />
                 <Route path="/notifications-workshop-conductor" component={NotificationBoxWorkshopConductor} />
                 <Route path="/notification-workshop-conductor/:id" component={ViewNotificationWorkshopConductor} />
-                <Route path="/conferences" component={ConferenceList} />
-                <Route path="/conference/:id" component={ViewConference} />
                 <Route path="/keynote-speakers" component={KeyNoteSpeakerList} />
                 <Route path="/keynote-speaker/add" component={AddKeyNoteSpeaker} />
                 <Route path="/keynote-speaker/:id" component={ViewKeyNoteSpeaker} />
