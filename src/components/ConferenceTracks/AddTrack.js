@@ -20,6 +20,8 @@ export default function AddTrack(props) {
                 alert(err.response.data.name);
             } else if(err.response.data.imageURL !== undefined) {
                 alert(err.response.data.imageURL);
+            } else if(err.response.data.message !== undefined) {
+                alert(err.response.data.message);
             } else {
                 alert(err);
             }

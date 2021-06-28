@@ -43,6 +43,9 @@ import KeyNoteSpeakerListAdmin from "./components/KeynoteSpeakers/KeyNoteSpeaker
 import ApproveRejectKeyNoteSpeaker from "./components/KeynoteSpeakers/ApproveRejectKeyNoteSpeaker";
 import ResearchListReviewer from "./components/Research/ResearchListReviewer";
 import ApproveRejectResearch from "./components/Research/ApproveRejectResearch";
+import WorkshopList from "./components/Workshops/WorkshopList";
+import AddWorkshop from "./components/Workshops/AddWorkshop";
+import ViewWorkshop from "./components/Workshops/ViewWorkshop";
 import WorkshopListReviewer from "./components/Workshops/WorkshopListReviewer";
 import ApproveRejectWorkshop from "./components/Workshops/ApproveRejectWorkshop";
 
@@ -165,6 +168,9 @@ class App extends Component {
                 <Route path="/keynote-speaker-admin/:id" component={ApproveRejectKeyNoteSpeaker} />
                 <Route path="/researches-reviewer" component={ResearchListReviewer} />
                 <Route path="/research-reviewer/:id" component={ApproveRejectResearch} />
+                <Route path="/workshops" component={WorkshopList} />
+                <Route path="/workshop/add" component={AddWorkshop} />
+                <Route path="/workshop/:id" component={ViewWorkshop} />
                 <Route path="/workshops-reviewer" component={WorkshopListReviewer} />
                 <Route path="/workshop-reviewer/:id" component={ApproveRejectWorkshop} />
             </Switch>
