@@ -1,20 +1,28 @@
 import React, {useState} from "react";
 import EditorSideNav from "../Navbar/EditorSideNav";
 import axios from "axios";
+import { storage } from '../../firebase';
+import appleCamera from '../../images/apple-camera.png'
 
 export default function AddKeyNoteSpeaker(props) {
 
-    const [data, setData] = useState({
-        name: "",
-        designation: "",
-        description: "",
-        imageURL: ""
-    })
+    const [name, setName] = useState("");
+    const [designation, setDesignation] = useState("");
+    const [description, setDescription] = useState("");
+    const [imageURL, setImageURL] = useState("");
+    const [image, setImage] = useState(null);
+    const [progress, setProgress] = useState('');
 
     function submit(e) {
         e.preventDefault();
-        axios.post("https://icaf-backend.herokuapp.com/keynote-speakers/save", data).then((res) => {
-            console.log(data);
+        const dataObject = {
+            name,
+            designation,
+            description,
+            imageURL
+        }
+        axios.post("https://icaf-backend.herokuapp.com/keynote-speakers/save", dataObject).then((res) => {
+            console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/keynote-speakers");
         }).catch((err) => {
@@ -30,10 +38,36 @@ export default function AddKeyNoteSpeaker(props) {
         })
     }
 
-    function handle(e) {
-        const newData = {...data}
-        newData[e.target.id] = e.target.value
-        setData(newData)
+    function handleImageChange(e) {
+        if(e.target.files[0]) {
+            const imageFile = e.target.files[0]
+            setImage(imageFile)
+        }
+    }
+
+    function handleImageUpload(e) {
+        e.preventDefault();
+        if(image == null) {
+            alert("Please select an image!");
+        } else {
+            const uploadTask = storage.ref(`KeyNotes/${image.name}`).put(image);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progressValue = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    setProgress(progressValue);
+                },
+                (error) => {
+                    alert(error);
+                },
+                () => {
+                    storage.ref('KeyNotes').child(image.name).getDownloadURL().then(url => {
+                        console.log(url);
+                        const uploadedURL = url;
+                        setImageURL(uploadedURL);
+                        alert("Image uploaded successfully.")
+                    })
+                });
+        }
     }
 
     return(
@@ -52,32 +86,41 @@ export default function AddKeyNoteSpeaker(props) {
                         <h4>Keynote Speaker</h4>
                     </div>
                     <div className="card-body">
-                        <form onSubmit={(e) => submit(e)}>
+                        <form>
                             <div className="form-group row">
                                 <label htmlFor="name" className="col-sm-3">Name</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="name" placeholder="Enter Name" value={data.name} required/>
+                                    <input type="text" onChange={(e) => setName(e.target.value)} className="form-control" id="name" placeholder="Enter Name" required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="designation" className="col-sm-3">Designation</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="designation" placeholder="Enter Designation" value={data.designation} required/>
+                                    <input type="text" onChange={(e) => setDesignation(e.target.value)} className="form-control" id="designation" placeholder="Enter Designation" required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="description" className="col-sm-3">Description</label>
                                 <div className="col-sm-5">
-                                    <textarea onChange={(e) => handle(e)} className="form-control" id="description" cols="30" rows="6" placeholder="Enter Description" value={data.description} />
+                                    <textarea onChange={(e) => setDescription(e.target.value)} className="form-control" id="description" cols="30" rows="6" placeholder="Enter Description" />
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="imageURL" className="col-sm-3">Image</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="imageURL" placeholder="Enter Image" value={data.imageURL} required/>
+                                    <input type="file" onChange={(e) => handleImageChange(e)} className="form-control file-box" id="imageURL" />
+                                </div>
+                                <div className="col">
+                                    <button onClick={(e) => handleImageUpload(e)} className="btn btn-success">Upload</button>
                                 </div>
                             </div><br/>
-                            <button type="submit" className="btn btn-primary">Save</button>
+                            <div className="form-group row">
+                                <div className="col-md-3 offset-md-3">
+                                    <img src={ imageURL || appleCamera} alt="No Image" height="100" width="160" /><br />
+                                    <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={progress} max="100" />
+                                </div>
+                            </div>
+                            <button onClick={(e) => submit(e)} className="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>

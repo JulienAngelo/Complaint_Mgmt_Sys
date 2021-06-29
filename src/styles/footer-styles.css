@@ -19,12 +19,6 @@ h5 {
     margin-bottom: 8px
 }
 
-img {
-    vertical-align: middle !important;
-    width: 100%;
-    width: calc(30px + 6 * ((100vw - 320px) / 680)) !important
-}
-
 .footer-li:first-child {
     font-size: 18px !important;
     font-weight: bold
