@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import ResearcherSideNav from "../Navbar/ResearcherSideNav";
 import axios from "axios";
 import { storage } from '../../firebase';
-import docIcon from '../../images/doc-icon.png'
+import docIcon from '../../images/normal-file.jpg'
 
 export default function AddResearch(props) {
 
@@ -127,7 +127,7 @@ export default function AddResearch(props) {
                                     <img src={ documentURL || docIcon} alt="No Document" height="100" width="100" /><br />
                                     <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={progress} max="100" />
                                 </div>
-                            </div>
+                            </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="publishedDate" className="col-sm-3">Published Date</label>
                                 <div className="col-sm-5">

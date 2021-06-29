@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import AdminSideNav from "../Navbar/AdminSideNav";
+import docIcon from "../../images/normal-file.jpg";
 
 export default function ViewResearchAdmin(props) {
 
@@ -91,7 +92,8 @@ export default function ViewResearchAdmin(props) {
                             <div className="form-group row">
                                 <label htmlFor="documentURL" className="col-sm-3">Document</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="documentURL" value={data.documentURL} readOnly/>
+                                    <img src={docIcon} alt="No Document" height="50" width="50" /><br/>
+                                    <a href={data.documentURL} className="doc-url">{data.documentURL.substring(0, 50)}</a>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
