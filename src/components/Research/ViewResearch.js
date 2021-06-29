@@ -6,16 +6,6 @@ import docIcon from "../../images/normal-file.jpg";
 
 export default function ViewResearch(props) {
 
-    const [data, setData] = useState({
-        id: "",
-        conferenceDetailsId: "",
-        name: "",
-        topic: "",
-        description: "",
-        publishedDate: "",
-        documentURL: ""
-    });
-
     const [id, setId] = useState("");
     const [conferenceDetailsId, setConferenceDetailsId] = useState("");
     const [name, setName] = useState("");

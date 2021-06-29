@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
 import axios from "axios";
 import {storage} from "../../firebase";
-import docIcon from "../../images/doc-icon.png";
+import docIcon from "../../images/normal-file.jpg";
 
 export default function AddWorkshop(props) {
 
