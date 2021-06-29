@@ -1,20 +1,28 @@
 import React, {useState} from "react";
 import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
 import axios from "axios";
+import {storage} from "../../firebase";
+import docIcon from "../../images/doc-icon.png";
 
 export default function AddWorkshop(props) {
 
-    const [data, setData] = useState({
-        conferenceDetailsId: "",
-        name: "",
-        description: "",
-        documentURL: ""
-    })
+    const [conferenceDetailsId, setConferenceDetailsId] = useState("");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [documentURL, setDocumentURL] = useState("");
+    const [document, setDocument] = useState(null);
+    const [progress, setProgress] = useState('');
 
     function submit(e) {
         e.preventDefault();
-        axios.post("https://icaf-backend.herokuapp.com/workshops/save", data).then((res) => {
-            console.log(data);
+        const dataObject = {
+            conferenceDetailsId,
+            name,
+            description,
+            documentURL
+        }
+        axios.post("https://icaf-backend.herokuapp.com/workshops/save", dataObject).then((res) => {
+            console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/workshops");
         }).catch((err) => {
@@ -32,10 +40,36 @@ export default function AddWorkshop(props) {
         })
     }
 
-    function handle(e) {
-        const newData = {...data}
-        newData[e.target.id] = e.target.value
-        setData(newData)
+    function handleDocumentChange(e) {
+        if(e.target.files[0]) {
+            const documentFile = e.target.files[0]
+            setDocument(documentFile)
+        }
+    }
+
+    function handleDocumentUpload(e) {
+        e.preventDefault();
+        if(document == null) {
+            alert("Please select a document!");
+        } else {
+            const uploadTask = storage.ref(`Workshops/${document.name}`).put(document);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progressValue = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    setProgress(progressValue);
+                },
+                (error) => {
+                    alert(error);
+                },
+                () => {
+                    storage.ref('Workshops').child(document.name).getDownloadURL().then(url => {
+                        console.log(url);
+                        const uploadedURL = url;
+                        setDocumentURL(uploadedURL);
+                        alert("Document uploaded successfully.")
+                    })
+                });
+        }
     }
 
     return(
@@ -54,32 +88,41 @@ export default function AddWorkshop(props) {
                         <h4>Workshop</h4>
                     </div>
                     <div className="card-body">
-                        <form onSubmit={(e) => submit(e)}>
+                        <form>
                             <div className="form-group row">
                                 <label htmlFor="conferenceDetailsId" className="col-sm-3">Conference Details</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="conferenceDetailsId" placeholder="Enter Conference" value={data.conferenceDetailsId} required/>
+                                    <input type="text" onChange={(e) => setConferenceDetailsId(e.target.value)} className="form-control" id="conferenceDetailsId" placeholder="Enter Conference" required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="name" className="col-sm-3">Name</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="name" placeholder="Enter Name" value={data.name} required/>
+                                    <input type="text" onChange={(e) => setName(e.target.value)} className="form-control" id="name" placeholder="Enter Name" required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="description" className="col-sm-3">Description</label>
                                 <div className="col-sm-5">
-                                    <textarea onChange={(e) => handle(e)} className="form-control" id="description" cols="30" rows="6" placeholder="Enter Description" value={data.description} />
+                                    <textarea onChange={(e) => setDescription(e.target.value)} className="form-control" id="description" cols="30" rows="6" placeholder="Enter Description" />
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="documentURL" className="col-sm-3">Document</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="documentURL" placeholder="Enter Document" value={data.documentURL} />
+                                    <input type="file" onChange={(e) => handleDocumentChange(e)} className="form-control file-box" id="documentURL" />
+                                </div>
+                                <div className="col">
+                                    <button onClick={(e) => handleDocumentUpload(e)} className="btn btn-success">Upload</button>
                                 </div>
                             </div><br/>
-                            <button type="submit" className="btn btn-primary">Save</button>
+                            <div className="form-group row">
+                                <div className="col-md-3 offset-md-3">
+                                    <img src={ documentURL || docIcon} alt="No Document" height="100" width="100" /><br />
+                                    <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={progress} max="100" />
+                                </div>
+                            </div>
+                            <button onClick={(e) => submit(e)} className="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>
