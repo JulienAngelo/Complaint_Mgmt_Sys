@@ -5,7 +5,8 @@ import ResearcherSideNav from "../Navbar/ResearcherSideNav";
 export default function ResearcherDashboard(props) {
 
     const [data, setData] = useState({
-        totalRoles: ""
+        totalApprovedResearches: "",
+        totalRejectedResearches: ""
     })
 
     useEffect(() => {
@@ -13,7 +14,7 @@ export default function ResearcherDashboard(props) {
     }, [])
 
     function getDashboard() {
-        axios.get("https://icaf-backend.herokuapp.com/dashboard/admin").then((res) => {
+        axios.get("https://icaf-backend.herokuapp.com/dashboard/researcher/MKW").then((res) => {
             setData(res.data);
         }).catch((err) => {
             alert(err);
@@ -30,7 +31,7 @@ export default function ResearcherDashboard(props) {
                         <div className="col-md-3">
                             <div className="card-counter orders">
                                 <i className="fa fa-file-text-o"></i>
-                                <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
+                                <span className="count-numbers"><h1>{data.totalApprovedResearches}</h1></span>
                                 <span className="count-name">Approved<br/>Researches</span>
                             </div>
                         </div>
@@ -38,7 +39,7 @@ export default function ResearcherDashboard(props) {
                         <div className="col-md-3">
                             <div className="card-counter blacks">
                                 <i className="fa fa-window-close-o"></i>
-                                <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
+                                <span className="count-numbers"><h1>{data.totalRejectedResearches}</h1></span>
                                 <span className="count-name">Rejected<br/>Researches</span>
                             </div>
                         </div>

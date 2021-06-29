@@ -5,7 +5,10 @@ import ReviewerSideNav from "../Navbar/ReviewerSideNav";
 export default function ReviewerDashboard(props) {
 
     const [data, setData] = useState({
-        totalRoles: ""
+        totalApprovedResearches: "",
+        totalRejectedResearches: "",
+        totalApprovedWorkshops: "",
+        totalRejectedWorkshops: ""
     })
 
     useEffect(() => {
@@ -13,7 +16,7 @@ export default function ReviewerDashboard(props) {
     }, [])
 
     function getDashboard() {
-        axios.get("https://icaf-backend.herokuapp.com/dashboard/admin").then((res) => {
+        axios.get("https://icaf-backend.herokuapp.com/dashboard/reviewer").then((res) => {
             setData(res.data);
         }).catch((err) => {
             alert(err);
@@ -30,7 +33,7 @@ export default function ReviewerDashboard(props) {
                         <div className="col-md-3">
                             <div className="card-counter orders">
                                 <i className="fa fa-file-text-o"></i>
-                                <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
+                                <span className="count-numbers"><h1>{data.totalApprovedResearches}</h1></span>
                                 <span className="count-name">Approved<br/>Researches</span>
                             </div>
                         </div>
@@ -38,7 +41,7 @@ export default function ReviewerDashboard(props) {
                         <div className="col-md-3">
                             <div className="card-counter reds">
                                 <i className="fa fa-window-close-o"></i>
-                                <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
+                                <span className="count-numbers"><h1>{data.totalRejectedResearches}</h1></span>
                                 <span className="count-name">Rejected<br/>Researches</span>
                             </div>
                         </div>
@@ -46,7 +49,7 @@ export default function ReviewerDashboard(props) {
                         <div className="col-md-3">
                             <div className="card-counter tracks">
                                 <i className="fa fa-code"></i>
-                                <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
+                                <span className="count-numbers"><h1>{data.totalApprovedWorkshops}</h1></span>
                                 <span className="count-name">Approved<br/>Workshops</span>
                             </div>
                         </div>
@@ -54,7 +57,7 @@ export default function ReviewerDashboard(props) {
                         <div className="col-md-3">
                             <div className="card-counter blacks">
                                 <i className="fa fa-window-close"></i>
-                                <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
+                                <span className="count-numbers"><h1>{data.totalRejectedWorkshops}</h1></span>
                                 <span className="count-name">Rejected<br/>Workshops</span>
                             </div>
                         </div>

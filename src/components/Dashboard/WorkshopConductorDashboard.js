@@ -5,7 +5,8 @@ import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
 export default function WorkshopConductorDashboard(props) {
 
     const [data, setData] = useState({
-        totalRoles: ""
+        totalApprovedWorkshops: "",
+        totalRejectedWorkshops: ""
     })
 
     useEffect(() => {
@@ -13,7 +14,7 @@ export default function WorkshopConductorDashboard(props) {
     }, [])
 
     function getDashboard() {
-        axios.get("https://icaf-backend.herokuapp.com/dashboard/admin").then((res) => {
+        axios.get("https://icaf-backend.herokuapp.com/dashboard/workshop-conductor/MKW").then((res) => {
             setData(res.data);
         }).catch((err) => {
             alert(err);
@@ -30,7 +31,7 @@ export default function WorkshopConductorDashboard(props) {
                         <div className="col-md-3">
                             <div className="card-counter conf">
                                 <i className="fa fa-code"></i>
-                                <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
+                                <span className="count-numbers"><h1>{data.totalApprovedWorkshops}</h1></span>
                                 <span className="count-name">Approved<br/>Workshops</span>
                             </div>
                         </div>
@@ -38,7 +39,7 @@ export default function WorkshopConductorDashboard(props) {
                         <div className="col-md-3">
                             <div className="card-counter blacks">
                                 <i className="fa fa-window-close"></i>
-                                <span className="count-numbers"><h1>{data.totalRoles}</h1></span>
+                                <span className="count-numbers"><h1>{data.totalRejectedWorkshops}</h1></span>
                                 <span className="count-name">Rejected<br/>Workshops</span>
                             </div>
                         </div>
