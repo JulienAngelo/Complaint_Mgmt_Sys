@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import AdminSideNav from "../Navbar/AdminSideNav";
+import appleCamera from "../../images/apple-camera.png";
 
 export default function ApproveRejectTrack(props) {
 
@@ -107,7 +108,7 @@ export default function ApproveRejectTrack(props) {
                             <div className="form-group row">
                                 <label htmlFor="imageURL" className="col-sm-3">Image</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="imageURL" value={data.imageURL} readOnly/>
+                                    <img src={ data.imageURL || appleCamera } alt="No Image" height="100" width="160" /><br />
                                 </div>
                             </div><br/>
                             <div className="form-group row">

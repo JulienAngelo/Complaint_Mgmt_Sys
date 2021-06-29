@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import EditorSideNav from "../Navbar/EditorSideNav";
+import {storage} from "../../firebase";
+import appleCamera from "../../images/apple-camera.png";
 
 export default function ViewTrack(props) {
 
-    const [data, setData] = useState({
-        id: "",
-        name: "",
-        imageURL: ""
-    });
+    const [id, setId] = useState("");
+    const [name, setName] = useState("");
+    const [imageURL, setImageURL] = useState("");
+    const [image, setImage] = useState(null);
+    const [progress, setProgress] = useState('');
 
     useEffect(() => {
         getTrack();
@@ -18,7 +20,9 @@ export default function ViewTrack(props) {
         const trackId = props.match.params.id;
         axios.get("https://icaf-backend.herokuapp.com/tracks/" + trackId).then((res) => {
             console.log(res.data);
-            setData(res.data);
+            setId(res.data.id);
+            setName(res.data.name);
+            setImageURL(res.data.imageURL);
         }).catch((err) => {
             alert(err);
         })
@@ -26,9 +30,13 @@ export default function ViewTrack(props) {
 
     function submit(e) {
         e.preventDefault();
+        const dataObject = {
+            name,
+            imageURL
+        }
         const trackId = props.match.params.id;
-        axios.put("https://icaf-backend.herokuapp.com/tracks/" + trackId, data).then((res) => {
-            console.log(data);
+        axios.put("https://icaf-backend.herokuapp.com/tracks/" + trackId, dataObject).then((res) => {
+            console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/tracks");
         }).catch((err) => {
@@ -44,10 +52,36 @@ export default function ViewTrack(props) {
         })
     }
 
-    function handle(e) {
-        const newData = {...data}
-        newData[e.target.id] = e.target.value
-        setData(newData)
+    function handleImageChange(e) {
+        if(e.target.files[0]) {
+            const imageFile = e.target.files[0]
+            setImage(imageFile)
+        }
+    }
+
+    function handleImageUpload(e) {
+        e.preventDefault();
+        if(image == null) {
+            alert("Please select an image!");
+        } else {
+            const uploadTask = storage.ref(`Tracks/${image.name}`).put(image);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progressValue = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    setProgress(progressValue);
+                },
+                (error) => {
+                    alert(error);
+                },
+                () => {
+                    storage.ref('Tracks').child(image.name).getDownloadURL().then(url => {
+                        console.log(url);
+                        const uploadedURL = url;
+                        setImageURL(uploadedURL);
+                        alert("Image uploaded successfully.")
+                    })
+                });
+        }
     }
 
     return(
@@ -66,26 +100,35 @@ export default function ViewTrack(props) {
                         <h4>Track</h4>
                     </div>
                     <div className="card-body">
-                        <form onSubmit={(e) => submit(e)}>
+                        <form>
                             <div className="form-group row">
                                 <label htmlFor="id" className="col-sm-3">Id</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="id" value={data.id} readOnly/>
+                                    <input type="text" className="form-control" id="id" value={id} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="name" className="col-sm-3">Name</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="name" placeholder="Enter Name" value={data.name} required/>
+                                    <input type="text" className="form-control" onChange={(e) => setName(e.target.value)} id="name" placeholder="Enter Name" value={name} required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="imageURL" className="col-sm-3">Image</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="imageURL" placeholder="Enter Image" value={data.imageURL} />
+                                    <input type="file" onChange={(e) => handleImageChange(e)} className="form-control file-box" id="imageURL" />
+                                </div>
+                                <div className="col">
+                                    <button onClick={(e) => handleImageUpload(e)} className="btn btn-success">Upload</button>
                                 </div>
                             </div><br/>
-                            <button type="submit" className="btn btn-primary">Update</button>
+                            <div className="form-group row">
+                                <div className="col-md-3 offset-md-3">
+                                    <img src={ imageURL || imageURL || appleCamera} alt="No Image" height="100" width="160" /><br />
+                                    <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={progress} max="100" />
+                                </div>
+                            </div>
+                            <button onClick={(e) => submit(e)} className="btn btn-primary">Update</button>
                         </form>
                     </div>
                 </div>

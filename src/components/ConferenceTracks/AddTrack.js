@@ -1,18 +1,24 @@
 import React, {useState} from "react";
 import EditorSideNav from "../Navbar/EditorSideNav";
 import axios from "axios";
+import { storage } from '../../firebase';
+import appleCamera from '../../images/apple-camera.png'
 
 export default function AddTrack(props) {
 
-    const [data, setData] = useState({
-        name: "",
-        imageURL: ""
-    })
+    const [name, setName] = useState("");
+    const [imageURL, setImageURL] = useState("");
+    const [image, setImage] = useState(null);
+    const [progress, setProgress] = useState('');
 
     function submit(e) {
         e.preventDefault();
-        axios.post("https://icaf-backend.herokuapp.com/tracks/save", data).then((res) => {
-            console.log(data);
+        const dataObject = {
+            name,
+            imageURL
+        }
+        axios.post("https://icaf-backend.herokuapp.com/tracks/save", dataObject).then((res) => {
+            console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/tracks");
         }).catch((err) => {
@@ -28,10 +34,36 @@ export default function AddTrack(props) {
         })
     }
 
-    function handle(e) {
-        const newData = {...data}
-        newData[e.target.id] = e.target.value
-        setData(newData)
+    function handleImageChange(e) {
+        if(e.target.files[0]) {
+            const imageFile = e.target.files[0]
+            setImage(imageFile)
+        }
+    }
+
+    function handleImageUpload(e) {
+        e.preventDefault();
+        if(image == null) {
+            alert("Please select an image!");
+        } else {
+            const uploadTask = storage.ref(`Tracks/${image.name}`).put(image);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progressValue = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    setProgress(progressValue);
+                },
+                (error) => {
+                    alert(error);
+                },
+                () => {
+                    storage.ref('Tracks').child(image.name).getDownloadURL().then(url => {
+                        console.log(url);
+                        const uploadedURL = url;
+                        setImageURL(uploadedURL);
+                        alert("Image uploaded successfully.")
+                    })
+                });
+        }
     }
 
     return(
@@ -50,20 +82,29 @@ export default function AddTrack(props) {
                         <h4>Track</h4>
                     </div>
                     <div className="card-body">
-                        <form onSubmit={(e) => submit(e)}>
+                        <form>
                             <div className="form-group row">
                                 <label htmlFor="name" className="col-sm-3">Name</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="name" placeholder="Enter Name" value={data.name} required/>
+                                    <input type="text" onChange={(e) => setName(e.target.value)} className="form-control" id="name" placeholder="Enter Name" required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="imageURL" className="col-sm-3">Image</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="imageURL" placeholder="Enter Image" value={data.imageURL} />
+                                    <input type="file" onChange={(e) => handleImageChange(e)} className="form-control file-box" id="imageURL" />
+                                </div>
+                                <div className="col">
+                                    <button onClick={(e) => handleImageUpload(e)} className="btn btn-success">Upload</button>
                                 </div>
                             </div><br/>
-                            <button type="submit" className="btn btn-primary">Save</button>
+                            <div className="form-group row">
+                                <div className="col-md-3 offset-md-3">
+                                    <img src={ imageURL || appleCamera} alt="No Image" height="100" width="160" /><br />
+                                    <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={progress} max="100" />
+                                </div>
+                            </div>
+                            <button onClick={(e) => submit(e)} className="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>
