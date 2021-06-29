@@ -17,6 +17,8 @@ export default function AddRole(props) {
         }).catch((err) => {
             if(err.response.data.name !== undefined) {
                 alert(err.response.data.name);
+            } else if(err.response.data.message !== undefined) {
+                alert(err.response.data.message);
             } else {
                 alert(err);
             }
