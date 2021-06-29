@@ -1,5 +1,8 @@
 .home-image {
     background-image: url('../images/front_back2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .home-h1 {
