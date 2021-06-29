@@ -5,6 +5,7 @@ import ResearcherSideNav from "../Navbar/ResearcherSideNav";
 export default function ResearcherDashboard(props) {
 
     const [data, setData] = useState({
+        totalPendingResearches: "",
         totalApprovedResearches: "",
         totalRejectedResearches: ""
     })
@@ -28,6 +29,14 @@ export default function ResearcherDashboard(props) {
                 <header className="jumbotron">
                     <h3>Researcher Dashboard</h3><br/>
                     <div className="row">
+                        <div className="col-md-3">
+                            <div className="card-counter users">
+                                <i className="fa fa-file-text-o"></i>
+                                <span className="count-numbers"><h1>{data.totalPendingResearches}</h1></span>
+                                <span className="count-name">Pending<br/>Researches</span>
+                            </div>
+                        </div>
+
                         <div className="col-md-3">
                             <div className="card-counter orders">
                                 <i className="fa fa-file-text-o"></i>

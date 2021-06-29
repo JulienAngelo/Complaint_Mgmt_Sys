@@ -5,8 +5,10 @@ import ReviewerSideNav from "../Navbar/ReviewerSideNav";
 export default function ReviewerDashboard(props) {
 
     const [data, setData] = useState({
+        totalPendingResearches: "",
         totalApprovedResearches: "",
         totalRejectedResearches: "",
+        totalPendingWorkshops: "",
         totalApprovedWorkshops: "",
         totalRejectedWorkshops: ""
     })
@@ -31,6 +33,14 @@ export default function ReviewerDashboard(props) {
                     <h3>Reviewer Dashboard</h3><br/>
                     <div className="row">
                         <div className="col-md-3">
+                            <div className="card-counter users">
+                                <i className="fa fa-file-text-o"></i>
+                                <span className="count-numbers"><h1>{data.totalPendingResearches}</h1></span>
+                                <span className="count-name">Pending<br/>Researches</span>
+                            </div>
+                        </div>
+
+                        <div className="col-md-3">
                             <div className="card-counter orders">
                                 <i className="fa fa-file-text-o"></i>
                                 <span className="count-numbers"><h1>{data.totalApprovedResearches}</h1></span>
@@ -43,6 +53,14 @@ export default function ReviewerDashboard(props) {
                                 <i className="fa fa-window-close-o"></i>
                                 <span className="count-numbers"><h1>{data.totalRejectedResearches}</h1></span>
                                 <span className="count-name">Rejected<br/>Researches</span>
+                            </div>
+                        </div>
+
+                        <div className="col-md-3">
+                            <div className="card-counter conf-det">
+                                <i className="fa fa-file-text-o"></i>
+                                <span className="count-numbers"><h1>{data.totalPendingWorkshops}</h1></span>
+                                <span className="count-name">Pending<br/>Workshops</span>
                             </div>
                         </div>
 

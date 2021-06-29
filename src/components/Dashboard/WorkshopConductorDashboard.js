@@ -5,6 +5,7 @@ import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
 export default function WorkshopConductorDashboard(props) {
 
     const [data, setData] = useState({
+        totalPendingWorkshops: "",
         totalApprovedWorkshops: "",
         totalRejectedWorkshops: ""
     })
@@ -28,6 +29,14 @@ export default function WorkshopConductorDashboard(props) {
                 <header className="jumbotron">
                     <h3>Workshop Conductor Dashboard</h3><br/>
                     <div className="row">
+                        <div className="col-md-3">
+                            <div className="card-counter users">
+                                <i className="fa fa-file-text-o"></i>
+                                <span className="count-numbers"><h1>{data.totalPendingWorkshops}</h1></span>
+                                <span className="count-name">Pending<br/>Workshops</span>
+                            </div>
+                        </div>
+
                         <div className="col-md-3">
                             <div className="card-counter conf">
                                 <i className="fa fa-code"></i>
