@@ -1,17 +1,50 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
 import axios from "axios";
 import {storage} from "../../firebase";
 import docIcon from "../../images/normal-file.jpg";
+import Select from "react-select";
 
 export default function AddWorkshop(props) {
 
+    const [conferenceDetailsList, setConferenceDetailsList] = useState([]);
+    const [optionsList, setOptionsList] = useState([]);
     const [conferenceDetailsId, setConferenceDetailsId] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [documentURL, setDocumentURL] = useState("");
     const [document, setDocument] = useState(null);
     const [progress, setProgress] = useState('');
+
+    useEffect(() => {
+        getConferenceDetails();
+    }, [])
+
+    function getConferenceDetails() {
+        axios.get("https://icaf-backend.herokuapp.com/conference-details/status/APPROVED").then((res) => {
+            setConferenceDetailsList(res.data);
+        }).catch((err) => {
+            alert(err);
+        })
+    }
+
+    useEffect(() => {
+        if(conferenceDetailsList.length > 0) {
+            setOptionValues();
+        }
+    }, [conferenceDetailsList])
+
+    function setOptionValues() {
+        const gotOptions = conferenceDetailsList.map((conferenceDetail, index) => ({
+            value : conferenceDetail.id,
+            label : conferenceDetail.topic
+        }))
+        setOptionsList(gotOptions)
+    }
+
+    function onSelect(e) {
+        setConferenceDetailsId(e.value);
+    }
 
     function submit(e) {
         e.preventDefault();
@@ -92,7 +125,7 @@ export default function AddWorkshop(props) {
                             <div className="form-group row">
                                 <label htmlFor="conferenceDetailsId" className="col-sm-3">Conference Details</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => setConferenceDetailsId(e.target.value)} className="form-control" id="conferenceDetailsId" placeholder="Enter Conference" required/>
+                                    <Select options={optionsList} onChange={(e) => onSelect(e)} id="conferenceDetailsId" placeholder="Select Conference Details" single autoFocus isSearchable/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
