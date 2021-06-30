@@ -12,6 +12,8 @@ import "./styles/common-styles.css"
 //import Home from "./components/home.component";
 //import Profile from "./components/profile.component";
 import Home from "./components/Common/Home";
+import Login from "./components/Common/Login";
+import Register from "./components/Common/Register";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import EditorDashboard from "./components/Dashboard/EditorDashboard";
 import ReviewerDashboard from "./components/Dashboard/ReviewerDashboard";
@@ -97,107 +99,109 @@ class App extends Component {
           <div className="navbar-nav mr-auto">
 
 
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link" ><i className="fa fa-user-secret"></i>&nbsp; Admin</Link>
-              </li>
+            <li className="nav-item">
+              <Link to={"/admin"} className="nav-link" ><i className="fa fa-user-secret"></i>&nbsp; Admin</Link>
+            </li>
 
 
 
-              <li className="nav-item">
-                <Link to={"/editor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Editor</Link>
-              </li>
+            <li className="nav-item">
+              <Link to={"/editor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Editor</Link>
+            </li>
 
 
-              <li className="nav-item">
-                <Link to={"/reviewer"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Reviewer</Link>
-              </li>
+            <li className="nav-item">
+              <Link to={"/reviewer"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Reviewer</Link>
+            </li>
 
 
-              <li className="nav-item">
-                <Link to={"/researcher"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Researcher</Link>
-              </li>
+            <li className="nav-item">
+              <Link to={"/researcher"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Researcher</Link>
+            </li>
 
-              <li className="nav-item">
-                <Link to={"/workshop-conductor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Workshop Conductor</Link>
-              </li>
+            <li className="nav-item">
+              <Link to={"/workshop-conductor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Workshop Conductor</Link>
+            </li>
 
           </div>
 
 
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={ "/profile" } className="nav-link"><i className="fa fa-user"></i>&nbsp; MKW</Link>
-              </li>
-              <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>LogOut</a>
-              </li>
-            </div>
+          <div className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link to={"/profile"} className="nav-link"><i className="fa fa-user"></i>&nbsp; MKW</Link>
+            </li>
+            <li className="nav-item">
+              <a href="/login" className="nav-link" onClick={this.logOut}>LogOut</a>
+            </li>
+          </div>
 
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">Login</Link>
-              </li>
+          <div className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link to={"/login"} className="nav-link">Login</Link>
+            </li>
 
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">Sign Up</Link>
-              </li>
-            </div>
+            <li className="nav-item">
+              <Link to={"/register"} className="nav-link">Sign Up</Link>
+            </li>
+          </div>
 
         </nav>
 
 
         <div>
-            <Switch>
-                <Route exact path={["/", "/home"]} component={Home} />
-                <Route path="/admin" component={AdminDashboard} />
-                <Route path="/editor" component={EditorDashboard} />
-                <Route path="/reviewer" component={ReviewerDashboard} />
-                <Route path="/researcher" component={ResearcherDashboard} />
-                <Route path="/workshop-conductor" component={WorkshopConductorDashboard} />
-                <Route path="/roles" component={RoleList} />
-                <Route path="/role/add" component={AddRole} />
-                <Route path="/role/:id" component={ViewRole} />
-                <Route path="/conferences-admin" component={ConferenceListAdmin} />
-                <Route path="/conference/add" component={AddConference} />
-                <Route path="/conference-admin/:id" component={ViewConferenceAdmin} />
-                <Route path="/conferences" component={ConferenceList} />
-                <Route path="/conference/:id" component={ViewConference} />
-                <Route path="/conference-details" component={ConferenceDetailsList} />
-                <Route path="/conference-detail/add" component={AddConferenceDetails} />
-                <Route path="/conference-detail/:id" component={ViewConferenceDetails} />
-                <Route path="/conference-details-admin" component={ConferenceDetailsListAdmin} />
-                <Route path="/conference-detail-admin/:id" component={ApproveRejectConferenceDetails} />
-                <Route path="/tracks" component={TrackList} />
-                <Route path="/track/add" component={AddTrack} />
-                <Route path="/track/:id" component={ViewTrack} />
-                <Route path="/tracks-admin" component={TrackListAdmin} />
-                <Route path="/track-admin/:id" component={ApproveRejectTrack} />
-                <Route path="/notifications-editor" component={NotificationBoxEditor} />
-                <Route path="/notification-editor/:id" component={ViewNotificationEditor} />
-                <Route path="/notifications-researcher" component={NotificationBoxResearcher} />
-                <Route path="/notification-researcher/:id" component={ViewNotificationResearcher} />
-                <Route path="/notifications-workshop-conductor" component={NotificationBoxWorkshopConductor} />
-                <Route path="/notification-workshop-conductor/:id" component={ViewNotificationWorkshopConductor} />
-                <Route path="/keynote-speakers" component={KeyNoteSpeakerList} />
-                <Route path="/keynote-speaker/add" component={AddKeyNoteSpeaker} />
-                <Route path="/keynote-speaker/:id" component={ViewKeyNoteSpeaker} />
-                <Route path="/keynote-speakers-admin" component={KeyNoteSpeakerListAdmin} />
-                <Route path="/keynote-speaker-admin/:id" component={ApproveRejectKeyNoteSpeaker} />
-                <Route path="/researches" component={ResearchList} />
-                <Route path="/research/add" component={AddResearch} />
-                <Route path="/research/:id" component={ViewResearch} />
-                <Route path="/researches-reviewer" component={ResearchListReviewer} />
-                <Route path="/research-reviewer/:id" component={ApproveRejectResearch} />
-                <Route path="/researches-admin" component={ResearchListAdmin} />
-                <Route path="/research-admin/:id" component={ViewResearchAdmin} />
-                <Route path="/workshops" component={WorkshopList} />
-                <Route path="/workshop/add" component={AddWorkshop} />
-                <Route path="/workshop/:id" component={ViewWorkshop} />
-                <Route path="/workshops-reviewer" component={WorkshopListReviewer} />
-                <Route path="/workshop-reviewer/:id" component={ApproveRejectWorkshop} />
-                <Route path="/workshops-admin" component={WorkshopListAdmin} />
-                <Route path="/workshop-admin/:id" component={ViewWorkshopAdmin} />
-            </Switch>
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/register/:name" component={Register} />
+            <Route path="/admin" component={AdminDashboard} />
+            <Route path="/editor" component={EditorDashboard} />
+            <Route path="/reviewer" component={ReviewerDashboard} />
+            <Route path="/researcher" component={ResearcherDashboard} />
+            <Route path="/workshop-conductor" component={WorkshopConductorDashboard} />
+            <Route path="/roles" component={RoleList} />
+            <Route path="/role/add" component={AddRole} />
+            <Route path="/role/:id" component={ViewRole} />
+            <Route path="/conferences-admin" component={ConferenceListAdmin} />
+            <Route path="/conference/add" component={AddConference} />
+            <Route path="/conference-admin/:id" component={ViewConferenceAdmin} />
+            <Route path="/conferences" component={ConferenceList} />
+            <Route path="/conference/:id" component={ViewConference} />
+            <Route path="/conference-details" component={ConferenceDetailsList} />
+            <Route path="/conference-detail/add" component={AddConferenceDetails} />
+            <Route path="/conference-detail/:id" component={ViewConferenceDetails} />
+            <Route path="/conference-details-admin" component={ConferenceDetailsListAdmin} />
+            <Route path="/conference-detail-admin/:id" component={ApproveRejectConferenceDetails} />
+            <Route path="/tracks" component={TrackList} />
+            <Route path="/track/add" component={AddTrack} />
+            <Route path="/track/:id" component={ViewTrack} />
+            <Route path="/tracks-admin" component={TrackListAdmin} />
+            <Route path="/track-admin/:id" component={ApproveRejectTrack} />
+            <Route path="/notifications-editor" component={NotificationBoxEditor} />
+            <Route path="/notification-editor/:id" component={ViewNotificationEditor} />
+            <Route path="/notifications-researcher" component={NotificationBoxResearcher} />
+            <Route path="/notification-researcher/:id" component={ViewNotificationResearcher} />
+            <Route path="/notifications-workshop-conductor" component={NotificationBoxWorkshopConductor} />
+            <Route path="/notification-workshop-conductor/:id" component={ViewNotificationWorkshopConductor} />
+            <Route path="/keynote-speakers" component={KeyNoteSpeakerList} />
+            <Route path="/keynote-speaker/add" component={AddKeyNoteSpeaker} />
+            <Route path="/keynote-speaker/:id" component={ViewKeyNoteSpeaker} />
+            <Route path="/keynote-speakers-admin" component={KeyNoteSpeakerListAdmin} />
+            <Route path="/keynote-speaker-admin/:id" component={ApproveRejectKeyNoteSpeaker} />
+            <Route path="/researches" component={ResearchList} />
+            <Route path="/research/add" component={AddResearch} />
+            <Route path="/research/:id" component={ViewResearch} />
+            <Route path="/researches-reviewer" component={ResearchListReviewer} />
+            <Route path="/research-reviewer/:id" component={ApproveRejectResearch} />
+            <Route path="/researches-admin" component={ResearchListAdmin} />
+            <Route path="/research-admin/:id" component={ViewResearchAdmin} />
+            <Route path="/workshops" component={WorkshopList} />
+            <Route path="/workshop/add" component={AddWorkshop} />
+            <Route path="/workshop/:id" component={ViewWorkshop} />
+            <Route path="/workshops-reviewer" component={WorkshopListReviewer} />
+            <Route path="/workshop-reviewer/:id" component={ApproveRejectWorkshop} />
+            <Route path="/workshops-admin" component={WorkshopListAdmin} />
+            <Route path="/workshop-admin/:id" component={ViewWorkshopAdmin} />
+          </Switch>
         </div>
 
       </div>

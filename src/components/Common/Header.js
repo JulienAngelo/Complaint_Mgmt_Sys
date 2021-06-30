@@ -1,8 +1,8 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import React from "react";
 
 export default function Header() {
-    return(
+    return (
         <div>
             <nav className="navbar navbar-expand navbar-dark bg-dark justify-content-center">
                 <div className="navbar-nav">
@@ -20,21 +20,21 @@ export default function Header() {
                     </li>
                     <li className="nav-item dropdown nav-item-pad">
                         <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Registrations
                         </a>
                         <div className="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                             <div className="dropdown-divider"></div>
-                            <Link to={"/researcher"} className="dropdown-item d-item" >Conference</Link>
+                            <Link to={"/register/ROLE_ATTENDEE"} className="dropdown-item d-item" >Conference</Link>
                             <div className="dropdown-divider"></div>
-                            <Link to={"/researcher"} className="dropdown-item d-item" >Research</Link>
+                            <Link to={"/register/ROLE_RESEARCHER"} className="dropdown-item d-item" >Research</Link>
                             <div className="dropdown-divider"></div>
-                            <Link to={"/researcher"} className="dropdown-item d-item" >Workshop</Link>
+                            <Link to={"/register/ROLE_WORKSHOP_CONDUCTOR"} className="dropdown-item d-item" >Workshop</Link>
                         </div>
                     </li>
                     <li className="nav-item dropdown nav-item-pad">
                         <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Past Proceedings
                         </a>
                         <div className="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
@@ -46,7 +46,7 @@ export default function Header() {
                     </li>
                     <li className="nav-item dropdown nav-item-pad">
                         <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Downloads
                         </a>
                         <div className="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
