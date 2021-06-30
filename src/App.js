@@ -64,6 +64,11 @@ import KeynotesFront from "./components/Common/KeynotesFront";
 import ViewKeyNoteFront from "./components/Common/ViewKeyNoteFront";
 import TracksFront from "./components/Common/TracksFront";
 import WorkshopsFront from "./components/Common/WorkshopsFront";
+import ViewWorkshopsFront from "./components/Common/ViewWorkshopsFront";
+import ResearchFront from "./components/Common/ResearchFront";
+import ViewResearchFront from "./components/Common/ViewResearchFront";
+import ResearchDownloads from "./components/Common/ResearchDownloads";
+import WorkshopsDownloads from "./components/Common/WorkshopsDownloads";
 
 class App extends Component {
   constructor(props) {
@@ -205,6 +210,11 @@ class App extends Component {
                 <Route path="/common-keynote/:id" component={ViewKeyNoteFront} />
                 <Route path="/common-tracks" component={TracksFront} />
                 <Route path="/common-workshops" component={WorkshopsFront} />
+                <Route path="/common-workshop/:id" component={ViewWorkshopsFront} />
+                <Route path="/common-researches" component={ResearchFront} />
+                <Route path="/common-research/:id" component={ViewResearchFront} />
+                <Route path="/research-downloads" component={ResearchDownloads} />
+                <Route path="/workshop-downloads" component={WorkshopsDownloads} />
             </Switch>
         </div>
 

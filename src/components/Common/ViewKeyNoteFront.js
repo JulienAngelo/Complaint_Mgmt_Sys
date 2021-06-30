@@ -8,17 +8,18 @@ export default function ViewKeyNoteFront(props) {
     const [data, setData] = useState({
         id: "",
         name: "",
-        year: "",
+        designation: "",
         description: "",
-        venue:""
+        imageURL:""
     })
 
     useEffect(() => {
-        getRole();
+        getKeyNote();
     }, [])
 
-    function getRole() {
-        axios.get("https://icaf-backend.herokuapp.com/conference/1").then((res) => {
+    function getKeyNote() {
+        const keyNoteId = props.match.params.id;
+        axios.get("https://icaf-backend.herokuapp.com/keynote-speakers/"+keyNoteId).then((res) => {
             console.log(res.data);
             setData(res.data);
         }).catch((err) => {
@@ -34,12 +35,12 @@ export default function ViewKeyNoteFront(props) {
                 <div className="card-body text-center">
                     <div className="row justify-content-center">
                         <div className="col-auto">
-                            <h1 className="home-h1">{data.name + " " + data.year}</h1>
-                            <small className="home-h1">{data.description}</small>
-                            <div className="row justify-content-center">
-                                <div className="col-10"><br/>
-                                    <h4 className="home-h1"> <b>Venue</b></h4>
-                                    <small className="home-h1">{data.venue}</small>
+                            <div className="card bg-dark fr-work-card">
+                                <center><h5>{data.name}</h5></center><br/>
+                                <center><img className="card-img-top fr-work-card-img" src={data.imageURL} alt="No image"/></center>
+                                <div className="card-body">
+                                    <h5>{data.designation}</h5><br/>
+                                    <h6>{data.description}</h6><br/>
                                 </div>
                             </div>
                         </div>

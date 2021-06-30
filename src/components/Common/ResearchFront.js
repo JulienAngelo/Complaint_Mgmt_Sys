@@ -4,7 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {Link} from "react-router-dom";
 
-export default function WorkshopsFront(props) {
+export default function ResearchFront(props) {
 
     const [tracks, setTracks] = useState([]);
 
@@ -20,8 +20,8 @@ export default function WorkshopsFront(props) {
         })
     }
 
-    function viewWorkshops(trackId) {
-        props.history.push("common-workshop/"+trackId)
+    function viewResearches(trackId) {
+        props.history.push("common-research/"+trackId)
     }
 
     return(
@@ -48,7 +48,7 @@ export default function WorkshopsFront(props) {
                                 tracks.map((track, index) => (
                                     <div className="col-md-4">
                                         <div className="card bg-dark fr-track-card">
-                                            <Link><img className="card-img-top fr-track-card-img" src={track.imageURL} alt="No image" onClick={() => viewWorkshops(track.id)}/></Link>
+                                            <Link><img className="card-img-top fr-track-card-img" src={track.imageURL} alt="No image" onClick={() => viewResearches(track.id)}/></Link>
                                             <div className="card-body">
                                                 <center><h5>{track.name}</h5></center>
                                             </div>
