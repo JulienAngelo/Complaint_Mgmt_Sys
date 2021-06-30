@@ -60,6 +60,10 @@ import WorkshopListReviewer from "./components/Workshops/WorkshopListReviewer";
 import ApproveRejectWorkshop from "./components/Workshops/ApproveRejectWorkshop";
 import WorkshopListAdmin from "./components/Workshops/WorkshopListAdmin";
 import ViewWorkshopAdmin from "./components/Workshops/ViewWorkshopAdmin";
+import KeynotesFront from "./components/Common/KeynotesFront";
+import ViewKeyNoteFront from "./components/Common/ViewKeyNoteFront";
+import TracksFront from "./components/Common/TracksFront";
+import WorkshopsFront from "./components/Common/WorkshopsFront";
 
 class App extends Component {
   constructor(props) {
@@ -197,6 +201,10 @@ class App extends Component {
                 <Route path="/workshop-reviewer/:id" component={ApproveRejectWorkshop} />
                 <Route path="/workshops-admin" component={WorkshopListAdmin} />
                 <Route path="/workshop-admin/:id" component={ViewWorkshopAdmin} />
+                <Route path="/common-keynotes" component={KeynotesFront} />
+                <Route path="/common-keynote/:id" component={ViewKeyNoteFront} />
+                <Route path="/common-tracks" component={TracksFront} />
+                <Route path="/common-workshops" component={WorkshopsFront} />
             </Switch>
         </div>
 

@@ -10,6 +10,7 @@ export default function ViewConferenceAdmin(props) {
         year: "",
         description: "",
         venue: "",
+        payment: "",
         status: ""
     });
 
@@ -41,6 +42,8 @@ export default function ViewConferenceAdmin(props) {
                 alert(err.response.data.year);
             } else if(err.response.data.venue !== undefined) {
                 alert(err.response.data.venue);
+            } else if(err.response.data.payment !== undefined) {
+                alert(err.response.data.payment);
             } else if(err.response.data.status !== undefined) {
                 alert(err.response.data.status);
             } else if(err.response.data.message !== undefined) {
@@ -96,6 +99,12 @@ export default function ViewConferenceAdmin(props) {
                                 <label htmlFor="venue" className="col-sm-3">Venue</label>
                                 <div className="col-sm-5">
                                     <input type="text" className="form-control" onChange={(e) => handle(e)} id="venue" placeholder="Enter Venue" value={data.venue} required/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="payment" className="col-sm-3">Payment</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="payment" placeholder="Enter Payment" value={data.payment} required/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

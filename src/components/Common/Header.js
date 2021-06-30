@@ -10,13 +10,16 @@ export default function Header() {
                         <Link to={"/"} className="nav-link" >Home</Link>
                     </li>
                     <li className="nav-item nav-item-pad">
-                        <Link to={"/editor"} className="nav-link" >Keynotes</Link>
+                        <Link to={"/common-tracks"} className="nav-link" >Tracks</Link>
+                    </li>
+                    <li className="nav-item nav-item-pad">
+                        <Link to={"/common-keynotes"} className="nav-link" >Keynotes</Link>
                     </li>
                     <li className="nav-item nav-item-pad">
                         <Link to={"/reviewer"} className="nav-link" >Researches</Link>
                     </li>
                     <li className="nav-item nav-item-pad">
-                        <Link to={"/reviewer"} className="nav-link" >Workshops</Link>
+                        <Link to={"/common-workshops"} className="nav-link" >Workshops</Link>
                     </li>
                     <li className="nav-item dropdown nav-item-pad">
                         <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
@@ -55,9 +58,6 @@ export default function Header() {
                             <div className="dropdown-divider"></div>
                             <Link to={"/researcher"} className="dropdown-item d-item" >Workshop Presentation Templates</Link>
                         </div>
-                    </li>
-                    <li className="nav-item nav-item-pad">
-                        <Link to={"/reviewer"} className="nav-link" >Contacts</Link>
                     </li>
                 </div>
             </nav>

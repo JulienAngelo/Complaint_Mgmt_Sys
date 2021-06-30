@@ -7,9 +7,9 @@ import Select from "react-select";
 
 export default function AddResearch(props) {
 
-    const [conferenceDetailsList, setConferenceDetailsList] = useState([]);
+    const [tracksList, setTracksList] = useState([]);
     const [optionsList, setOptionsList] = useState([]);
-    const [conferenceDetailsId, setConferenceDetailsId] = useState("");
+    const [conferenceTracksId, setConferenceTracksId] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [publishedDate, setPublishedDate] = useState("");
@@ -18,39 +18,39 @@ export default function AddResearch(props) {
     const [progress, setProgress] = useState('');
 
     useEffect(() => {
-        getConferenceDetails();
+        getTracks();
     }, [])
 
-    function getConferenceDetails() {
-        axios.get("https://icaf-backend.herokuapp.com/conference-details/status/APPROVED").then((res) => {
-            setConferenceDetailsList(res.data);
+    function getTracks() {
+        axios.get("https://icaf-backend.herokuapp.com/tracks/status/APPROVED").then((res) => {
+            setTracksList(res.data);
         }).catch((err) => {
             alert(err);
         })
     }
 
     useEffect(() => {
-        if(conferenceDetailsList.length > 0) {
+        if(tracksList.length > 0) {
             setOptionValues();
         }
-    }, [conferenceDetailsList])
+    }, [tracksList])
 
     function setOptionValues() {
-        const gotOptions = conferenceDetailsList.map((conferenceDetail, index) => ({
-            value : conferenceDetail.id,
-            label : conferenceDetail.topic
+        const gotOptions = tracksList.map((track, index) => ({
+            value : track.id,
+            label : track.name
         }))
         setOptionsList(gotOptions)
     }
 
     function onSelect(e) {
-        setConferenceDetailsId(e.value);
+        setConferenceTracksId(e.value);
     }
 
     function submit(e) {
         e.preventDefault();
         const dataObject = {
-            conferenceDetailsId,
+            conferenceTracksId,
             name,
             description,
             publishedDate,
@@ -67,8 +67,8 @@ export default function AddResearch(props) {
                 alert(err.response.data.topic);
             } else if(err.response.data.documentURL !== undefined) {
                 alert(err.response.data.documentURL);
-            } else if(err.response.data.conferenceDetailsId !== undefined) {
-                alert(err.response.data.conferenceDetailsId);
+            } else if(err.response.data.conferenceTracksId !== undefined) {
+                alert(err.response.data.conferenceTracksId);
             } else if(err.response.data.publishedDate !== undefined) {
                 alert(err.response.data.publishedDate);
             } else if(err.response.data.message !== undefined) {
@@ -129,9 +129,9 @@ export default function AddResearch(props) {
                     <div className="card-body">
                         <form>
                             <div className="form-group row">
-                                <label htmlFor="conferenceDetailsId" className="col-sm-3">Conference Details</label>
+                                <label htmlFor="conferenceTracksId" className="col-sm-3">Conference Track</label>
                                 <div className="col-sm-5">
-                                    <Select options={optionsList} onChange={(e) => onSelect(e)} id="conferenceDetailsId" placeholder="Select Conference Details" single autoFocus isSearchable/>
+                                    <Select options={optionsList} onChange={(e) => onSelect(e)} id="conferenceTracksId" placeholder="Select Conference Track" single autoFocus isSearchable/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

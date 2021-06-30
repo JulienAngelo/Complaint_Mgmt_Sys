@@ -26,3 +26,25 @@
 .doc-url {
     font-size: 12px;
 }
+
+.fr-key-card {
+    width: 300px;
+    height: 400px;
+    color: white;
+}
+
+.fr-key-card-img {
+    width: 250px;
+    height: 200px
+}
+
+.fr-track-card {
+    width: 300px;
+    height: 320px;
+    color: white;
+}
+
+.fr-track-card-img {
+    width: 250px;
+    height: 200px
+}

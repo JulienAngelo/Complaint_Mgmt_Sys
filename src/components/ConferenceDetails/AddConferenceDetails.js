@@ -10,12 +10,6 @@ export default function AddConferenceDetails(props) {
     const [conferenceId, setConferenceId] = useState("");
     const [topic, setTopic] = useState("");
     const [description, setDescription] = useState("");
-    const [conductor, setConductor] = useState("");
-    const [venue, setVenue] = useState("");
-    const [date, setDate] = useState("");
-    const [startTime, setStartTime] = useState("");
-    const [endTime, setEndTime] = useState("");
-    const [payment, setPayment] = useState("");
 
     useEffect(() => {
         getConference();
@@ -52,13 +46,7 @@ export default function AddConferenceDetails(props) {
         const dataObject = {
             conferenceId,
             topic,
-            description,
-            conductor,
-            venue,
-            date,
-            startTime,
-            endTime,
-            payment
+            description
         }
         axios.post("https://icaf-backend.herokuapp.com/conference-details/save", dataObject).then((res) => {
             console.log(dataObject);
@@ -71,18 +59,8 @@ export default function AddConferenceDetails(props) {
                 alert(err.response.data.conductor);
             } else if(err.response.data.conferenceId !== undefined) {
                 alert(err.response.data.conferenceId);
-            } else if(err.response.data.venue !== undefined) {
-                alert(err.response.data.venue);
-            } else if(err.response.data.date !== undefined) {
-                alert(err.response.data.date);
-            } else if(err.response.data.startTime !== undefined) {
-                alert(err.response.data.startTime);
-            } else if(err.response.data.endTime !== undefined) {
-                alert(err.response.data.endTime);
-            } else if(err.response.data.payment !== undefined) {
-                alert(err.response.data.payment);
-            } else if(err.response.data.message !== undefined) {
-                alert(err.response.data.message);
+            } else if(err.response.data.description !== undefined) {
+                alert(err.response.data.description);
             } else {
                 alert(err);
             }
@@ -122,42 +100,6 @@ export default function AddConferenceDetails(props) {
                                 <label htmlFor="description" className="col-sm-3">Description</label>
                                 <div className="col-sm-5">
                                     <textarea onChange={(e) => setDescription(e.target.value)} className="form-control" id="description" cols="30" rows="6" placeholder="Enter Description" required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="conductor" className="col-sm-3">Conductor</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => setConductor(e.target.value)} className="form-control" id="conductor" placeholder="Enter Conductor" required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="venue" className="col-sm-3">Venue</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => setVenue(e.target.value)} className="form-control" id="venue" placeholder="Enter Venue" required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="date" className="col-sm-3">Date</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => setDate(e.target.value)} className="form-control" id="date" placeholder="Enter Date" required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="startTime" className="col-sm-3">Start Time</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => setStartTime(e.target.value)} className="form-control" id="startTime" placeholder="Enter Start Time" required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="endTime" className="col-sm-3">End Time</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => setEndTime(e.target.value)} className="form-control" id="endTime" placeholder="Enter End Time" required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="payment" className="col-sm-3">Payment</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => setPayment(e.target.value)} className="form-control" id="payment" placeholder="Enter Payment" required/>
                                 </div>
                             </div><br/>
                             <button type="submit" className="btn btn-primary">Save</button>

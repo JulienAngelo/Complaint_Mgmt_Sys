@@ -2,16 +2,22 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import ReviewerSideNav from "../Navbar/ReviewerSideNav";
 import docIcon from "../../images/normal-file.jpg";
+import appleCamera from "../../images/apple-camera.png";
 
 export default function ApproveRejectWorkshop(props) {
 
     const [data, setData] = useState({
         id: "",
-        conferenceDetailsId: "",
+        conferenceTracksName: "",
         name: "",
-        topic: "",
         description: "",
         documentURL: "",
+        conductor: "",
+        imageURL: "",
+        venue: "",
+        date: "",
+        startTime: "",
+        endTime: "",
         status: "",
         remarks: "",
         createdUser: "",
@@ -87,7 +93,7 @@ export default function ApproveRejectWorkshop(props) {
                 backgroundColor: '#ccccff',
                 boxShadow: '1px 2px 2px 2px rgba(0.3, 0.3, 0.3, 0.3)',
                 borderRadius: '5px',
-                height : '1800px'
+                height : '2300px'
             }}>
                 <br/>
                 <div className="card" style={{width : '75%', marginTop: 0, marginLeft : '15px', borderRadius: '5px'}}>
@@ -103,15 +109,9 @@ export default function ApproveRejectWorkshop(props) {
                                 </div>
                             </div><br/>
                             <div className="form-group row">
-                                <label htmlFor="conferenceDetailsId" className="col-sm-3">Conference Details Id</label>
+                                <label htmlFor="conferenceTracksName" className="col-sm-3">Conference Track</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="conferenceDetailsId" value={data.conferenceDetailsId} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="topic" className="col-sm-3">Topic</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="topic" value={data.topic} readOnly/>
+                                    <input type="text" className="form-control" id="conferenceTracksName" value={data.conferenceTracksName} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
@@ -131,6 +131,42 @@ export default function ApproveRejectWorkshop(props) {
                                 <div className="col-sm-5">
                                     <img src={docIcon} alt="No Document" height="50" width="50" /><br/>
                                     <a href={data.documentURL} className="doc-url">{data.documentURL.substring(0, 50)}</a>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="conductor" className="col-sm-3">Conductor</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="conductor" value={data.conductor} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="imageURL" className="col-sm-3">Conductor Image</label>
+                                <div className="col-sm-5">
+                                    <img src={ data.imageURL || appleCamera } alt="No Image" height="100" width="160" /><br />
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="venue" className="col-sm-3">Venue</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="venue" value={data.venue} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="date" className="col-sm-3">Date</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="date" value={data.date} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="startTime" className="col-sm-3">Start Time</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="startTime" value={data.startTime} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="endTime" className="col-sm-3">End Time</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="endTime" value={data.endTime} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

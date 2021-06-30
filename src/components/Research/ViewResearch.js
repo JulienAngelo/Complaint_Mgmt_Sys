@@ -7,9 +7,8 @@ import docIcon from "../../images/normal-file.jpg";
 export default function ViewResearch(props) {
 
     const [id, setId] = useState("");
-    const [conferenceDetailsId, setConferenceDetailsId] = useState("");
+    const [conferenceTracksName, setConferenceTracksName] = useState("");
     const [name, setName] = useState("");
-    const [topic, setTopic] = useState("");
     const [description, setDescription] = useState("");
     const [publishedDate, setPublishedDate] = useState("");
     const [documentURL, setDocumentURL] = useState("");
@@ -25,8 +24,7 @@ export default function ViewResearch(props) {
         axios.get("https://icaf-backend.herokuapp.com/research/" + researchId).then((res) => {
             console.log(res.data);
             setId(res.data.id);
-            setConferenceDetailsId(res.data.conferenceDetailsId);
-            setTopic(res.data.topic)
+            setConferenceTracksName(res.data.conferenceTracksName);
             setName(res.data.name);
             setDescription(res.data.description);
             setPublishedDate(res.data.publishedDate);
@@ -122,15 +120,9 @@ export default function ViewResearch(props) {
                                 </div>
                             </div><br/>
                             <div className="form-group row">
-                                <label htmlFor="conferenceDetailsId" className="col-sm-3">Conference Details Id</label>
+                                <label htmlFor="conferenceTracksName" className="col-sm-3">Conference Track</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="conferenceDetailsId" value={conferenceDetailsId} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="topic" className="col-sm-3">Topic</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="topic" value={topic} readOnly/>
+                                    <input type="text" className="form-control" id="conferenceTracksName" value={conferenceTracksName} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

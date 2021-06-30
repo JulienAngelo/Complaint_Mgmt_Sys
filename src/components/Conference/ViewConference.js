@@ -10,6 +10,7 @@ export default function ViewConference(props) {
         year: "",
         description: "",
         venue: "",
+        payment: "",
         status: ""
     });
 
@@ -71,6 +72,12 @@ export default function ViewConference(props) {
                                 <label htmlFor="venue" className="col-sm-3">Venue</label>
                                 <div className="col-sm-5">
                                     <input type="text" className="form-control" id="venue" value={data.venue} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="payment" className="col-sm-3">Payment</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="payment" value={data.payment} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

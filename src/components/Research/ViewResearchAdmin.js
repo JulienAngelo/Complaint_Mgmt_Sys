@@ -7,9 +7,8 @@ export default function ViewResearchAdmin(props) {
 
     const [data, setData] = useState({
         id: "",
-        conferenceDetailsId: "",
+        conferenceTracksName: "",
         name: "",
-        topic: "",
         publishedDate: "",
         description: "",
         documentURL: "",
@@ -66,15 +65,9 @@ export default function ViewResearchAdmin(props) {
                                 </div>
                             </div><br/>
                             <div className="form-group row">
-                                <label htmlFor="conferenceDetailsId" className="col-sm-3">Conference Details Id</label>
+                                <label htmlFor="conferenceTracksName" className="col-sm-3">Conference Track</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="conferenceDetailsId" value={data.conferenceDetailsId} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="topic" className="col-sm-3">Topic</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="topic" value={data.topic} readOnly/>
+                                    <input type="text" className="form-control" id="conferenceTracksName" value={data.conferenceTracksName} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
