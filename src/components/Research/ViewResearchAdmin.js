@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import AdminSideNav from "../Navbar/AdminSideNav";
+import docIcon from "../../images/normal-file.jpg";
 
 export default function ViewResearchAdmin(props) {
 
     const [data, setData] = useState({
         id: "",
-        conferenceDetailsId: "",
+        conferenceTracksName: "",
         name: "",
-        topic: "",
         publishedDate: "",
         description: "",
         documentURL: "",
@@ -65,15 +65,9 @@ export default function ViewResearchAdmin(props) {
                                 </div>
                             </div><br/>
                             <div className="form-group row">
-                                <label htmlFor="conferenceDetailsId" className="col-sm-3">Conference Details Id</label>
+                                <label htmlFor="conferenceTracksName" className="col-sm-3">Conference Track</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="conferenceDetailsId" value={data.conferenceDetailsId} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="topic" className="col-sm-3">Topic</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="topic" value={data.topic} readOnly/>
+                                    <input type="text" className="form-control" id="conferenceTracksName" value={data.conferenceTracksName} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
@@ -91,7 +85,8 @@ export default function ViewResearchAdmin(props) {
                             <div className="form-group row">
                                 <label htmlFor="documentURL" className="col-sm-3">Document</label>
                                 <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="documentURL" value={data.documentURL} readOnly/>
+                                    <img src={docIcon} alt="No Document" height="50" width="50" /><br/>
+                                    <a href={data.documentURL} className="doc-url">{data.documentURL.substring(0, 50)}</a>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

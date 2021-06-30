@@ -6,17 +6,10 @@ export default function ViewConferenceDetails(props) {
 
     const [data, setData] = useState({
         id: "",
-        conferenceId: "",
         conferenceName: "",
         conferenceYear: "",
         topic: "",
-        description: "",
-        conductor: "",
-        venue: "",
-        date: "",
-        startTime: "",
-        endTime: "",
-        payment: ""
+        description: ""
     });
 
     useEffect(() => {
@@ -43,18 +36,6 @@ export default function ViewConferenceDetails(props) {
         }).catch((err) => {
             if(err.response.data.topic !== undefined) {
                 alert(err.response.data.topic);
-            } else if(err.response.data.conductor !== undefined) {
-                alert(err.response.data.conductor);
-            } else if(err.response.data.venue !== undefined) {
-                alert(err.response.data.venue);
-            } else if(err.response.data.date !== undefined) {
-                alert(err.response.data.date);
-            } else if(err.response.data.startTime !== undefined) {
-                alert(err.response.data.startTime);
-            } else if(err.response.data.endTime !== undefined) {
-                alert(err.response.data.endTime);
-            } else if(err.response.data.payment !== undefined) {
-                alert(err.response.data.payment);
             } else if(err.response.data.message !== undefined) {
                 alert(err.response.data.message);
             } else {
@@ -93,15 +74,15 @@ export default function ViewConferenceDetails(props) {
                                 </div>
                             </div><br/>
                             <div className="form-group row">
-                                <label htmlFor="conferenceId" className="col-sm-3">Conference Id</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="conferenceId" value={data.conferenceId} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
                                 <label htmlFor="conferenceName" className="col-sm-3">Conference Name</label>
                                 <div className="col-sm-5">
                                     <input type="text" className="form-control" id="conferenceName" value={data.conferenceName} readOnly/>
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="conferenceYear" className="col-sm-3">Conference Year</label>
+                                <div className="col-sm-5">
+                                    <input type="text" className="form-control" id="conferenceYear" value={data.conferenceYear} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
@@ -114,42 +95,6 @@ export default function ViewConferenceDetails(props) {
                                 <label htmlFor="description" className="col-sm-3">Description</label>
                                 <div className="col-sm-5">
                                     <textarea className="form-control" onChange={(e) => handle(e)} id="description" cols="30" rows="6" placeholder="Enter Description" value={data.description} />
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="conductor" className="col-sm-3">Conductor</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="conductor" placeholder="Enter Conductor" value={data.conductor} required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="venue" className="col-sm-3">Venue</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="venue" placeholder="Enter Venue" value={data.venue} required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="date" className="col-sm-3">Date</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="date" placeholder="Enter Date" value={data.date} required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="startTime" className="col-sm-3">Start Time</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="startTime" placeholder="Enter Start Time" value={data.startTime} required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="endTime" className="col-sm-3">End Time</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="endTime" placeholder="Enter End Time" value={data.endTime} required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="payment" className="col-sm-3">Payment</label>
-                                <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="payment" placeholder="Enter Payment" value={data.payment} required/>
                                 </div>
                             </div><br/>
                             <button type="submit" className="btn btn-primary">Update</button>

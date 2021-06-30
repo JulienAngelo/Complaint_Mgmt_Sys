@@ -1,12 +1,15 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ResearcherSideNav from "../Navbar/ResearcherSideNav";
 import axios from "axios";
 import { storage } from '../../firebase';
-import docIcon from '../../images/doc-icon.png'
+import docIcon from '../../images/normal-file.jpg'
+import Select from "react-select";
 
 export default function AddResearch(props) {
 
-    const [conferenceDetailsId, setConferenceDetailsId] = useState("");
+    const [tracksList, setTracksList] = useState([]);
+    const [optionsList, setOptionsList] = useState([]);
+    const [conferenceTracksId, setConferenceTracksId] = useState("");
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [publishedDate, setPublishedDate] = useState("");
@@ -14,10 +17,40 @@ export default function AddResearch(props) {
     const [document, setDocument] = useState(null);
     const [progress, setProgress] = useState('');
 
+    useEffect(() => {
+        getTracks();
+    }, [])
+
+    function getTracks() {
+        axios.get("https://icaf-backend.herokuapp.com/tracks/status/APPROVED").then((res) => {
+            setTracksList(res.data);
+        }).catch((err) => {
+            alert(err);
+        })
+    }
+
+    useEffect(() => {
+        if(tracksList.length > 0) {
+            setOptionValues();
+        }
+    }, [tracksList])
+
+    function setOptionValues() {
+        const gotOptions = tracksList.map((track, index) => ({
+            value : track.id,
+            label : track.name
+        }))
+        setOptionsList(gotOptions)
+    }
+
+    function onSelect(e) {
+        setConferenceTracksId(e.value);
+    }
+
     function submit(e) {
         e.preventDefault();
         const dataObject = {
-            conferenceDetailsId,
+            conferenceTracksId,
             name,
             description,
             publishedDate,
@@ -34,8 +67,8 @@ export default function AddResearch(props) {
                 alert(err.response.data.topic);
             } else if(err.response.data.documentURL !== undefined) {
                 alert(err.response.data.documentURL);
-            } else if(err.response.data.conferenceDetailsId !== undefined) {
-                alert(err.response.data.conferenceDetailsId);
+            } else if(err.response.data.conferenceTracksId !== undefined) {
+                alert(err.response.data.conferenceTracksId);
             } else if(err.response.data.publishedDate !== undefined) {
                 alert(err.response.data.publishedDate);
             } else if(err.response.data.message !== undefined) {
@@ -96,9 +129,9 @@ export default function AddResearch(props) {
                     <div className="card-body">
                         <form>
                             <div className="form-group row">
-                                <label htmlFor="conferenceDetailsId" className="col-sm-3">Conference Details</label>
+                                <label htmlFor="conferenceTracksId" className="col-sm-3">Conference Track</label>
                                 <div className="col-sm-5">
-                                    <input type="text" onChange={(e) => setConferenceDetailsId(e.target.value)} className="form-control" id="conferenceDetailsId" placeholder="Enter Conference" required/>
+                                    <Select options={optionsList} onChange={(e) => onSelect(e)} id="conferenceTracksId" placeholder="Select Conference Track" single autoFocus isSearchable/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">
@@ -127,7 +160,7 @@ export default function AddResearch(props) {
                                     <img src={ documentURL || docIcon} alt="No Document" height="100" width="100" /><br />
                                     <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={progress} max="100" />
                                 </div>
-                            </div>
+                            </div><br/>
                             <div className="form-group row">
                                 <label htmlFor="publishedDate" className="col-sm-3">Published Date</label>
                                 <div className="col-sm-5">

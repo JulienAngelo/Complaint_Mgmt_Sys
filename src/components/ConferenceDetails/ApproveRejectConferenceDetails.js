@@ -11,12 +11,6 @@ export default function ApproveRejectConferenceDetails(props) {
         conferenceYear: "",
         topic: "",
         description: "",
-        conductor: "",
-        venue: "",
-        date: "",
-        startTime: "",
-        endTime: "",
-        payment: "",
         status: "",
         remarks: "",
         createdUser: "",
@@ -129,42 +123,6 @@ export default function ApproveRejectConferenceDetails(props) {
                                 <label htmlFor="description" className="col-sm-3">Description</label>
                                 <div className="col-sm-5">
                                     <textarea type="text" className="form-control" id="description" cols="30" rows="6" value={data.description} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="conductor" className="col-sm-3">Conductor</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="conductor" value={data.conductor} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="venue" className="col-sm-3">Venue</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="venue" value={data.venue} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="date" className="col-sm-3">Date</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="date" value={data.date} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="startTime" className="col-sm-3">Start Time</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="startTime" value={data.startTime} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="endTime" className="col-sm-3">End Time</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="endTime" value={data.endTime} readOnly/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="payment" className="col-sm-3">Payment</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" id="payment" value={data.payment} readOnly/>
                                 </div>
                             </div><br/>
                             <div className="form-group row">

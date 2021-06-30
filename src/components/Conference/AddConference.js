@@ -8,7 +8,8 @@ export default function AddConference(props) {
         name: "",
         year: "",
         description: "",
-        venue: ""
+        venue: "",
+        payment: ""
     })
 
     function submit(e) {
@@ -24,6 +25,8 @@ export default function AddConference(props) {
                 alert(err.response.data.year);
             } else if(err.response.data.venue !== undefined) {
                 alert(err.response.data.venue);
+            } else if(err.response.data.payment !== undefined) {
+                alert(err.response.data.payment);
             } else if(err.response.data.message !== undefined) {
                 alert(err.response.data.message);
             } else {
@@ -77,6 +80,12 @@ export default function AddConference(props) {
                                 <label htmlFor="description" className="col-sm-3">Description</label>
                                 <div className="col-sm-5">
                                     <textarea onChange={(e) => handle(e)} className="form-control" id="description" cols="30" rows="6" placeholder="Enter Description" value={data.description} />
+                                </div>
+                            </div><br/>
+                            <div className="form-group row">
+                                <label htmlFor="payment" className="col-sm-3">Payment</label>
+                                <div className="col-sm-5">
+                                    <input type="text" onChange={(e) => handle(e)} className="form-control" id="payment" placeholder="Enter Payment" value={data.payment} required/>
                                 </div>
                             </div><br/>
                             <button type="submit" className="btn btn-primary">Save</button>

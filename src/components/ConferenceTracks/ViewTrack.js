@@ -124,7 +124,7 @@ export default function ViewTrack(props) {
                             </div><br/>
                             <div className="form-group row">
                                 <div className="col-md-3 offset-md-3">
-                                    <img src={ imageURL || imageURL || appleCamera} alt="No Image" height="100" width="160" /><br />
+                                    <img src={ imageURL || appleCamera} alt="No Image" height="100" width="160" /><br />
                                     <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={progress} max="100" />
                                 </div>
                             </div>
