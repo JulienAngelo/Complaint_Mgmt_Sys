@@ -59,15 +59,15 @@ export default class Login extends Component {
                     if (response.role === 'ROLE_ADMIN') {
                         this.props.history.push("/admin");
                     } else if (response.role === 'ROLE_EDITOR') {
-                        this.props.history.push("/admin");
+                        this.props.history.push("/editor");
                     } else if (response.role === 'ROLE_REVIEWER') {
-                        this.props.history.push("/admin");
+                        this.props.history.push("/reviewer");
                     } else if (response.role === 'ROLE_RESEARCHER') {
-                        this.props.history.push("/admin");
+                        this.props.history.push("/researcher");
                     } else if (response.role === 'ROLE_WORKSHOP_CONDUCTOR') {
-                        this.props.history.push("/admin");
+                        this.props.history.push("/workshop-conductor");
                     } else if (response.role === 'ROLE_USER') {
-                        this.props.history.push("/admin");
+                        this.props.history.push("/home");
                     } else {
                         this.props.history.push("/home");
                     }
