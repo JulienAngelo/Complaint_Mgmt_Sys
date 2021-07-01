@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/auth/";
+const API_URL = "https://icaf-backend.herokuapp.com/auth/";
 
 class AuthService {
   login(userName, password) {

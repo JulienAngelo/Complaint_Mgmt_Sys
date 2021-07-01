@@ -6,11 +6,7 @@ import "./styles/dashboard-styles.css";
 import "./styles/footer-styles.css";
 import "./styles/common-styles.css"
 
-//import AuthService from "./services/auth.service";
-//import Login from "./components/login.component";
-//import Register from "./components/register.component";
-//import Home from "./components/home.component";
-//import Profile from "./components/profile.component";
+import AuthService from "./services/auth.service";
 import Home from "./components/Common/Home";
 import Login from "./components/Common/Login";
 import Register from "./components/Common/Register";
@@ -79,27 +75,35 @@ class App extends Component {
 
     this.state = {
       showAdminBoard: false,
+      showEditorBoard: false,
+      showResearcherBoard: false,
+      showReviewerBoard: false,
+      showWorkshopBoard: false,
       currentUser: undefined,
     };
   }
 
   componentDidMount() {
-    /*const user = AuthService.getCurrentUser();
+    const user = AuthService.getCurrentUser();
 
     if (user) {
       this.setState({
         currentUser: user,
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        showAdminBoard: user.role.includes("ROLE_ADMIN"),
+        showEditorBoard: user.role.includes("ROLE_EDITOR"),
+        showResearcherBoard: user.role.includes("ROLE_RESEARCHER"),
+        showReviewerBoard: user.role.includes("ROLE_REVIEWER"),
+        showWorkshopBoard: user.role.includes("ROLE_WORKSHOP_CONDUCTOR"),
       });
-    }*/
+    }
   }
 
   logOut() {
-    //AuthService.logout();
+    AuthService.logout();
   }
 
   render() {
-    //const { currentUser, showAdminBoard } = this.state;
+    const { currentUser, showAdminBoard, showEditorBoard, showResearcherBoard, showReviewerBoard, showWorkshopBoard } = this.state;
 
     return (
       <div>
@@ -107,55 +111,59 @@ class App extends Component {
           <Link to={"/"} className="navbar-brand" >ICAF</Link>
           <div className="navbar-nav mr-auto">
 
+            {showAdminBoard && (
+                <li className="nav-item">
+                  <Link to={"/admin"} className="nav-link" ><i className="fa fa-user-secret"></i>&nbsp; Admin</Link>
+                </li>
+            )}
 
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link" ><i className="fa fa-user-secret"></i>&nbsp; Admin</Link>
-            </li>
+            {showEditorBoard && (
+                <li className="nav-item">
+                  <Link to={"/editor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Editor</Link>
+                </li>
+            )}
 
+            {showResearcherBoard && (
+                <li className="nav-item">
+                  <Link to={"/reviewer"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Reviewer</Link>
+                </li>
+            )}
 
+            {showReviewerBoard && (
+                <li className="nav-item">
+                  <Link to={"/researcher"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Researcher</Link>
+                </li>
+            )}
 
-            <li className="nav-item">
-              <Link to={"/editor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Editor</Link>
-            </li>
-
-
-            <li className="nav-item">
-              <Link to={"/reviewer"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Reviewer</Link>
-            </li>
-
-
-            <li className="nav-item">
-              <Link to={"/researcher"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Researcher</Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/workshop-conductor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Workshop Conductor</Link>
-            </li>
+            {showWorkshopBoard && (
+                <li className="nav-item">
+                  <Link to={"/workshop-conductor"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Workshop Conductor</Link>
+                </li>
+            )}
 
           </div>
 
-
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link"><i className="fa fa-user"></i>&nbsp; MKW</Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={this.logOut}>LogOut</a>
-            </li>
-          </div>
-
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">Login</Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">Sign Up</Link>
-            </li>
-          </div>
-
+          {currentUser ? (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={ "/profile" } className="nav-link">
+                    <i className="fa fa-user"></i>&nbsp; {currentUser.username}
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <a href="/home" className="nav-link" onClick={this.logOut}>
+                    LogOut
+                  </a>
+                </li>
+              </div>
+          ) : (
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/login"} className="nav-link">Login</Link>
+                </li>
+              </div>
+          )}
         </nav>
-
 
         <div>
           <Switch>
@@ -220,9 +228,7 @@ class App extends Component {
             <Route path="/research-downloads" component={ResearchDownloads} />
             <Route path="/workshop-downloads" component={WorkshopsDownloads} />
           </Switch>
-
         </div>
-
       </div>
     );
   }

@@ -190,161 +190,166 @@ export default class Register extends Component {
 
     render() {
         return (
-            <div className="col-md-12">
-                <div className="container" style={{ margin: '20px', width: '60%' }}>
-                    <img
-                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                        alt="profile-img"
-                        className="profile-img-card"
-                    />
-
-                    <Form
-                        onSubmit={this.handleRegister}
-                        ref={c => {
-                            this.form = c;
-                        }}
-                    >
-                        {!this.state.successful && (
-                            <div>
-                                <div className="form-group">
-                                    <label htmlFor="username">Username</label>
-                                    <Input
-                                        type="text"
-                                        className="form-control"
-                                        name="username"
-                                        value={this.state.userName}
-                                        onChange={this.onChangeUsername}
-                                        validations={[required, vusername]}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="title">Title</label>
-                                    <Input
-                                        type="text"
-                                        className="form-control"
-                                        name="title"
-                                        value={this.state.title}
-                                        onChange={this.onChangeTitle}
-                                        validations={[required]}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="firstName">firstName</label>
-                                    <Input
-                                        type="text"
-                                        className="form-control"
-                                        name="firstName"
-                                        value={this.state.firstName}
-                                        onChange={this.onChangeFname}
-                                        validations={[required]}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="lastName">lastName</label>
-                                    <Input
-                                        type="text"
-                                        className="form-control"
-                                        name="lastName"
-                                        value={this.state.lastName}
-                                        onChange={this.onChangeLname}
-                                        validations={[required]}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="lastName">Address</label>
-                                    <Input
-                                        type="text"
-                                        className="form-control"
-                                        name="addressLine1"
-                                        value={this.state.addressLine1}
-                                        onChange={this.onChangeAddress1}
-                                        validations={[required]}
-                                    />
-                                    <Input
-                                        type="text"
-                                        className="form-control"
-                                        name="addressLine2"
-                                        value={this.state.addressLine2}
-                                        onChange={this.onChangeAddress2}
-                                        validations={[required]}
-                                    />
-                                    <Input
-                                        type="text"
-                                        className="form-control"
-                                        name="addressLine3"
-                                        value={this.state.addressLine3}
-                                        onChange={this.onChangeAddress3}
-                                        validations={[required]}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="phoneNumber">Phone no</label>
-                                    <Input
-                                        type="number"
-                                        className="form-control"
-                                        name="phoneNumber"
-                                        value={this.state.phoneNumber}
-                                        onChange={this.onChangePhone}
-                                        validations={[required]}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email">Email</label>
-                                    <Input
-                                        type="text"
-                                        className="form-control"
-                                        name="email"
-                                        value={this.state.email}
-                                        onChange={this.onChangeEmail}
-                                        validations={[required, email]}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label htmlFor="password">Password</label>
-                                    <Input
-                                        type="password"
-                                        className="form-control"
-                                        name="password"
-                                        value={this.state.password}
-                                        onChange={this.onChangePassword}
-                                        validations={[required, vpassword]}
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <button className="btn btn-primary btn-block">Sign Up</button>
-                                </div>
-                            </div>
-                        )}
-
-                        {this.state.message && (
-                            <div className="form-group">
-                                <div
-                                    className={
-                                        this.state.successful
-                                            ? "alert alert-success"
-                                            : "alert alert-danger"
-                                    }
-                                    role="alert"
-                                >
-                                    {this.state.message}
-                                </div>
-                            </div>
-                        )}
-                        <CheckButton
-                            style={{ display: "none" }}
-                            ref={c => {
-                                this.checkBtn = c;
-                            }}
+            <div className="container">
+                <div className="card bg-dark" style={{width : '50%', marginTop: '10px', borderRadius: '5px', color : 'white'}}>
+                    <div className="card-header" style={{color : 'white'}}>
+                        <h4>Signup</h4>
+                    </div>
+                    <div className="card-body">
+                        <img
+                            src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=338&ext=jpg"
+                            alt="profile-img"
+                            className="profile-img-card"
                         />
-                    </Form>
-                </div>
-            </div >
+
+                        <Form
+                            onSubmit={this.handleRegister}
+                            ref={c => {
+                                this.form = c;
+                            }}
+                        >
+                            {!this.state.successful && (
+                                <div>
+                                    <div className="form-group">
+                                        <label htmlFor="username">Username</label>
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="username"
+                                            value={this.state.userName}
+                                            onChange={this.onChangeUsername}
+                                            validations={[required, vusername]}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="title">Title</label>
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="title"
+                                            value={this.state.title}
+                                            onChange={this.onChangeTitle}
+                                            validations={[required]}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="firstName">First Name</label>
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="firstName"
+                                            value={this.state.firstName}
+                                            onChange={this.onChangeFname}
+                                            validations={[required]}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="lastName">Last Name</label>
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="lastName"
+                                            value={this.state.lastName}
+                                            onChange={this.onChangeLname}
+                                            validations={[required]}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="lastName">Address</label>
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="addressLine1"
+                                            value={this.state.addressLine1}
+                                            onChange={this.onChangeAddress1}
+                                            validations={[required]}
+                                        />
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="addressLine2"
+                                            value={this.state.addressLine2}
+                                            onChange={this.onChangeAddress2}
+                                            validations={[required]}
+                                        />
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="addressLine3"
+                                            value={this.state.addressLine3}
+                                            onChange={this.onChangeAddress3}
+                                            validations={[required]}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="phoneNumber">Phone no</label>
+                                        <Input
+                                            type="number"
+                                            className="form-control"
+                                            name="phoneNumber"
+                                            value={this.state.phoneNumber}
+                                            onChange={this.onChangePhone}
+                                            validations={[required]}
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="email">Email</label>
+                                        <Input
+                                            type="text"
+                                            className="form-control"
+                                            name="email"
+                                            value={this.state.email}
+                                            onChange={this.onChangeEmail}
+                                            validations={[required, email]}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="password">Password</label>
+                                        <Input
+                                            type="password"
+                                            className="form-control"
+                                            name="password"
+                                            value={this.state.password}
+                                            onChange={this.onChangePassword}
+                                            validations={[required, vpassword]}
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <button className="btn btn-primary btn-block">Sign Up</button>
+                                    </div>
+                                </div>
+                            )}
+
+                            {this.state.message && (
+                                <div className="form-group">
+                                    <div
+                                        className={
+                                            this.state.successful
+                                                ? "alert alert-success"
+                                                : "alert alert-danger"
+                                        }
+                                        role="alert"
+                                    >
+                                        {this.state.message}
+                                    </div>
+                                </div>
+                            )}
+                            <CheckButton
+                                style={{ display: "none" }}
+                                ref={c => {
+                                    this.checkBtn = c;
+                                }}
+                            />
+                        </Form>
+                    </div>
+                </div >
+            </div>
         );
     }
 }

@@ -23,7 +23,6 @@ export default function ViewResearchFront(props) {
 
     return(
         <div>
-            <br/>
             <Header/>
             <div className="card py-5 border-0 px-0 mx-0 home-image">
                 <div className="card-body text-center">

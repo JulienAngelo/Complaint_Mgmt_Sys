@@ -58,16 +58,22 @@ export default class Login extends Component {
                     //console.log(response.role)
                     if (response.role === 'ROLE_ADMIN') {
                         this.props.history.push("/admin");
+                        window.location.reload();
                     } else if (response.role === 'ROLE_EDITOR') {
                         this.props.history.push("/editor");
+                        window.location.reload();
                     } else if (response.role === 'ROLE_REVIEWER') {
                         this.props.history.push("/reviewer");
+                        window.location.reload();
                     } else if (response.role === 'ROLE_RESEARCHER') {
                         this.props.history.push("/researcher");
+                        window.location.reload();
                     } else if (response.role === 'ROLE_WORKSHOP_CONDUCTOR') {
                         this.props.history.push("/workshop-conductor");
+                        window.location.reload();
                     } else if (response.role === 'ROLE_USER') {
                         this.props.history.push("/home");
+                        window.location.reload();
                     } else {
                         this.props.history.push("/home");
                     }
@@ -98,7 +104,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className="col-md-12">
-                <div className="card card-container">
+                <div className="card card-container bg-dark" style={{color : 'white'}}>
                     <img
                         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
                         alt="profile-img"
