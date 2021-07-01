@@ -126,13 +126,13 @@ class App extends Component {
 
             {showResearcherBoard && (
                 <li className="nav-item">
-                  <Link to={"/reviewer"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Reviewer</Link>
+                  <Link to={"/researcher"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Reviewer</Link>
                 </li>
             )}
 
             {showReviewerBoard && (
                 <li className="nav-item">
-                  <Link to={"/researcher"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Researcher</Link>
+                  <Link to={"/reviewer"} className="nav-link" ><i className="fa fa-user-circle-o"></i>&nbsp; Researcher</Link>
                 </li>
             )}
 
