@@ -3,6 +3,7 @@ import axios from "axios";
 import ResearcherSideNav from "../Navbar/ResearcherSideNav";
 import {storage} from "../../firebase";
 import docIcon from "../../images/normal-file.jpg";
+import authHeader from "../../services/auth-header";
 
 export default function ViewResearch(props) {
 
@@ -43,7 +44,7 @@ export default function ViewResearch(props) {
             documentURL
         }
         const researchId = props.match.params.id;
-        axios.put("https://icaf-backend.herokuapp.com/research/" + researchId, dataObject).then((res) => {
+        axios.put("https://icaf-backend.herokuapp.com/research/" + researchId, dataObject, {headers: authHeader()}).then((res) => {
             console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/researches");

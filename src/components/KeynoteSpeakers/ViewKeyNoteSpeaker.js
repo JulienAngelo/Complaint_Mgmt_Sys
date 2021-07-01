@@ -3,6 +3,7 @@ import axios from "axios";
 import EditorSideNav from "../Navbar/EditorSideNav";
 import appleCamera from "../../images/apple-camera.png";
 import {storage} from "../../firebase";
+import authHeader from "../../services/auth-header";
 
 export default function ViewKeyNoteSpeaker(props) {
 
@@ -41,7 +42,7 @@ export default function ViewKeyNoteSpeaker(props) {
             imageURL
         }
         const keyNoteSpeakerId = props.match.params.id;
-        axios.put("https://icaf-backend.herokuapp.com/keynote-speakers/" + keyNoteSpeakerId, dataObject).then((res) => {
+        axios.put("https://icaf-backend.herokuapp.com/keynote-speakers/" + keyNoteSpeakerId, dataObject, {headers: authHeader()}).then((res) => {
             console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/keynote-speakers");

@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import EditorSideNav from "../Navbar/EditorSideNav";
 import axios from "axios";
 import { storage } from '../../firebase';
-import appleCamera from '../../images/apple-camera.png'
+import appleCamera from '../../images/apple-camera.png';
+import authHeader from "../../services/auth-header";
 
 export default function AddTrack(props) {
 
@@ -17,7 +18,7 @@ export default function AddTrack(props) {
             name,
             imageURL
         }
-        axios.post("https://icaf-backend.herokuapp.com/tracks/save", dataObject).then((res) => {
+        axios.post("https://icaf-backend.herokuapp.com/tracks/save", dataObject, {headers: authHeader()}).then((res) => {
             console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/tracks");

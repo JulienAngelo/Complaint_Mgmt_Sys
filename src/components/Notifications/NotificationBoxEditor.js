@@ -4,6 +4,7 @@ import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
 import EditorSideNav from "../Navbar/EditorSideNav";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import AuthService from "../../services/auth.service";
 
 export default function NotificationBoxEditor(props) {
 
@@ -88,7 +89,8 @@ export default function NotificationBoxEditor(props) {
     }, [])
 
     function getNotifications() {
-        axios.get("https://icaf-backend.herokuapp.com/notifications/username/MKW").then((res) => {
+        const user = AuthService.getCurrentUser();
+        axios.get("https://icaf-backend.herokuapp.com/notifications/username/" + user.username).then((res) => {
             setNotifications(res.data);
         }).catch((err) => {
             alert(err);

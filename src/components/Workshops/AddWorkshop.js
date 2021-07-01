@@ -5,6 +5,7 @@ import {storage} from "../../firebase";
 import docIcon from "../../images/normal-file.jpg";
 import Select from "react-select";
 import appleCamera from "../../images/apple-camera.png";
+import authHeader from "../../services/auth-header";
 
 export default function AddWorkshop(props) {
 
@@ -69,7 +70,7 @@ export default function AddWorkshop(props) {
             startTime,
             endTime
         }
-        axios.post("https://icaf-backend.herokuapp.com/workshops/save", dataObject).then((res) => {
+        axios.post("https://icaf-backend.herokuapp.com/workshops/save", dataObject, {headers: authHeader()}).then((res) => {
             console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/workshops");

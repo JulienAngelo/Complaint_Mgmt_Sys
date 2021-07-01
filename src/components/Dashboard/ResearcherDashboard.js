@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import ResearcherSideNav from "../Navbar/ResearcherSideNav";
+import AuthService from "../../services/auth.service";
 
 export default function ResearcherDashboard(props) {
 
@@ -15,7 +16,8 @@ export default function ResearcherDashboard(props) {
     }, [])
 
     function getDashboard() {
-        axios.get("https://icaf-backend.herokuapp.com/dashboard/researcher/MKW").then((res) => {
+        const user = AuthService.getCurrentUser();
+        axios.get("https://icaf-backend.herokuapp.com/dashboard/researcher/" + user.username).then((res) => {
             setData(res.data);
         }).catch((err) => {
             alert(err);

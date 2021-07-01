@@ -4,6 +4,7 @@ import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
 import ResearcherSideNav from "../Navbar/ResearcherSideNav";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import AuthService from "../../services/auth.service";
 
 export default function ResearchList(props) {
 
@@ -80,7 +81,8 @@ export default function ResearchList(props) {
     }, [])
 
     function getResearches() {
-        axios.get("https://icaf-backend.herokuapp.com/research/all").then((res) => {
+        const user = AuthService.getCurrentUser();
+        axios.get("https://icaf-backend.herokuapp.com/research/created-user/" + user.username).then((res) => {
             setResearches(res.data);
         }).catch((err) => {
             alert(err);

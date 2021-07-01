@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import EditorSideNav from "../Navbar/EditorSideNav";
+import authHeader from "../../services/auth-header";
 
 export default function ViewConferenceDetails(props) {
 
@@ -29,7 +30,7 @@ export default function ViewConferenceDetails(props) {
     function submit(e) {
         e.preventDefault();
         const conferenceDetailsId = props.match.params.id;
-        axios.put("https://icaf-backend.herokuapp.com/conference-details/" + conferenceDetailsId, data).then((res) => {
+        axios.put("https://icaf-backend.herokuapp.com/conference-details/" + conferenceDetailsId, data, {headers: authHeader()}).then((res) => {
             console.log(data);
             alert(res.data.messages);
             props.history.push("/conference-details");

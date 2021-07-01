@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
+import AuthService from "../../services/auth.service";
 
 export default function WorkshopConductorDashboard(props) {
 
@@ -15,7 +16,8 @@ export default function WorkshopConductorDashboard(props) {
     }, [])
 
     function getDashboard() {
-        axios.get("https://icaf-backend.herokuapp.com/dashboard/workshop-conductor/MKW").then((res) => {
+        const user = AuthService.getCurrentUser();
+        axios.get("https://icaf-backend.herokuapp.com/dashboard/workshop-conductor/" + user.username).then((res) => {
             setData(res.data);
         }).catch((err) => {
             alert(err);

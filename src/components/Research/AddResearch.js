@@ -4,6 +4,7 @@ import axios from "axios";
 import { storage } from '../../firebase';
 import docIcon from '../../images/normal-file.jpg'
 import Select from "react-select";
+import authHeader from "../../services/auth-header";
 
 export default function AddResearch(props) {
 
@@ -56,7 +57,7 @@ export default function AddResearch(props) {
             publishedDate,
             documentURL
         }
-        axios.post("https://icaf-backend.herokuapp.com/research/save", dataObject).then((res) => {
+        axios.post("https://icaf-backend.herokuapp.com/research/save", dataObject, {headers: authHeader()}).then((res) => {
             console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/researches");

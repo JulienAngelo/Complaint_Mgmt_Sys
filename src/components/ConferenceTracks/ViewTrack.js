@@ -3,6 +3,7 @@ import axios from "axios";
 import EditorSideNav from "../Navbar/EditorSideNav";
 import {storage} from "../../firebase";
 import appleCamera from "../../images/apple-camera.png";
+import authHeader from "../../services/auth-header";
 
 export default function ViewTrack(props) {
 
@@ -35,7 +36,7 @@ export default function ViewTrack(props) {
             imageURL
         }
         const trackId = props.match.params.id;
-        axios.put("https://icaf-backend.herokuapp.com/tracks/" + trackId, dataObject).then((res) => {
+        axios.put("https://icaf-backend.herokuapp.com/tracks/" + trackId, dataObject, {headers: authHeader()}).then((res) => {
             console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/tracks");

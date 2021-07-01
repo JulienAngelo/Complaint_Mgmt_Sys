@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import EditorSideNav from "../Navbar/EditorSideNav";
 import axios from "axios";
 import Select from "react-select";
+import authHeader from "../../services/auth-header";
 
 export default function AddConferenceDetails(props) {
 
@@ -48,7 +49,7 @@ export default function AddConferenceDetails(props) {
             topic,
             description
         }
-        axios.post("https://icaf-backend.herokuapp.com/conference-details/save", dataObject).then((res) => {
+        axios.post("https://icaf-backend.herokuapp.com/conference-details/save", dataObject, {headers: authHeader()}).then((res) => {
             console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/conference-details");

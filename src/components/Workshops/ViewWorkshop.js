@@ -4,6 +4,7 @@ import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
 import {storage} from "../../firebase";
 import docIcon from "../../images/normal-file.jpg";
 import appleCamera from "../../images/apple-camera.png";
+import authHeader from "../../services/auth-header";
 
 export default function ViewWorkshop(props) {
 
@@ -61,7 +62,7 @@ export default function ViewWorkshop(props) {
             endTime
         }
         const workshopId = props.match.params.id;
-        axios.put("https://icaf-backend.herokuapp.com/workshops/" + workshopId, dataObject).then((res) => {
+        axios.put("https://icaf-backend.herokuapp.com/workshops/" + workshopId, dataObject, {headers: authHeader()}).then((res) => {
             console.log(dataObject);
             alert(res.data.messages);
             props.history.push("/workshops");

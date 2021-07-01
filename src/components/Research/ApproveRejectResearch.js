@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import ReviewerSideNav from "../Navbar/ReviewerSideNav";
 import docIcon from "../../images/normal-file.jpg";
+import authHeader from "../../services/auth-header";
 
 export default function ApproveRejectResearch(props) {
 
@@ -19,8 +20,7 @@ export default function ApproveRejectResearch(props) {
         approvedUser: "",
         approvedDate: "",
         rejectedUser: "",
-        rejectedDate: "",
-        userName: ""
+        rejectedDate: ""
     });
 
     useEffect(() => {
@@ -40,14 +40,12 @@ export default function ApproveRejectResearch(props) {
     function approve(e) {
         e.preventDefault();
         const researchId = props.match.params.id;
-        axios.put("https://icaf-backend.herokuapp.com/research/approve/" + researchId, data).then((res) => {
+        axios.put("https://icaf-backend.herokuapp.com/research/approve/" + researchId, data, {headers: authHeader()}).then((res) => {
             console.log(data);
             alert(res.data.messages);
             props.history.push("/researches-reviewer");
         }).catch((err) => {
-            if(err.response.data.userName !== undefined) {
-                alert(err.response.data.userName);
-            } else if(err.response.data.remarks !== undefined) {
+            if(err.response.data.remarks !== undefined) {
                 alert(err.response.data.remarks);
             } else {
                 alert(err);
@@ -58,14 +56,12 @@ export default function ApproveRejectResearch(props) {
     function reject(e) {
         e.preventDefault();
         const researchId = props.match.params.id;
-        axios.put("https://icaf-backend.herokuapp.com/research/reject/" + researchId, data).then((res) => {
+        axios.put("https://icaf-backend.herokuapp.com/research/reject/" + researchId, data, {headers: authHeader()}).then((res) => {
             console.log(data);
             alert(res.data.messages);
             props.history.push("/researches-reviewer");
         }).catch((err) => {
-            if(err.response.data.userName !== undefined) {
-                alert(err.response.data.userName);
-            } else if(err.response.data.remarks !== undefined) {
+            if(err.response.data.remarks !== undefined) {
                 alert(err.response.data.remarks);
             } else {
                 alert(err);
@@ -179,12 +175,6 @@ export default function ApproveRejectResearch(props) {
                                 <label htmlFor="remarks" className="col-sm-3">Remarks</label>
                                 <div className="col-sm-5">
                                     <textarea onChange={(e) => handle(e)} className="form-control" id="remarks" cols="30" rows="6" placeholder="Enter Remarks" value={data.remarks} required/>
-                                </div>
-                            </div><br/>
-                            <div className="form-group row">
-                                <label htmlFor="userName" className="col-sm-3">User Name</label>
-                                <div className="col-sm-5">
-                                    <input type="text" className="form-control" onChange={(e) => handle(e)} id="userName" placeholder="Enter User Name" value={data.userName} required/>
                                 </div>
                             </div><br/>
                             <button onClick={(e) => approve(e)} className="btn btn-primary">Approve</button>&nbsp;

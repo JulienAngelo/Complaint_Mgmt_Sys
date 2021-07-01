@@ -4,6 +4,7 @@ import filterFactory, {textFilter} from "react-bootstrap-table2-filter";
 import WorkshopConductorSideNav from "../Navbar/WorkshopConductorSideNav";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import AuthService from "../../services/auth.service";
 
 export default function WorkshopList(props) {
 
@@ -80,7 +81,8 @@ export default function WorkshopList(props) {
     }, [])
 
     function getWorkshops() {
-        axios.get("https://icaf-backend.herokuapp.com/workshops/all").then((res) => {
+        const user = AuthService.getCurrentUser();
+        axios.get("https://icaf-backend.herokuapp.com/workshops/created-user/" + user.username).then((res) => {
             setWorkshops(res.data);
         }).catch((err) => {
             alert(err);
