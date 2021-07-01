@@ -12,8 +12,8 @@ export default function ViewWorkshopsFront(props) {
     }, [])
 
     function getWorkshops() {
-        const workshopId = props.match.params.id;
-        axios.get("https://icaf-backend.herokuapp.com/workshops/conference-tracks/"+workshopId).then((res) => {
+        const tracksId = props.match.params.id;
+        axios.get("https://icaf-backend.herokuapp.com/workshops/conference-tracks/"+tracksId+"/status/APPROVED").then((res) => {
             setWorkshops(res.data);
         }).catch((err) => {
             alert(err);

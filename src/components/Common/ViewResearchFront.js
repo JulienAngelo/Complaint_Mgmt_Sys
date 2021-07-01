@@ -13,8 +13,8 @@ export default function ViewResearchFront(props) {
     }, [])
 
     function getResearches() {
-        const researchId = props.match.params.id;
-        axios.get("https://icaf-backend.herokuapp.com/research/conference-tracks/"+researchId).then((res) => {
+        const tracksId = props.match.params.id;
+        axios.get("https://icaf-backend.herokuapp.com/research/conference-tracks/"+tracksId+"/status/APPROVED").then((res) => {
             setResearches(res.data);
         }).catch((err) => {
             alert(err);
