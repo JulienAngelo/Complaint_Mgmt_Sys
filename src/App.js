@@ -67,6 +67,7 @@ import ResearchFront from "./components/Common/ResearchFront";
 import ViewResearchFront from "./components/Common/ViewResearchFront";
 import ResearchDownloads from "./components/Common/ResearchDownloads";
 import WorkshopsDownloads from "./components/Common/WorkshopsDownloads";
+import LatestNews from "./components/Common/LatestNews";
 
 class App extends Component {
   constructor(props) {
@@ -227,6 +228,7 @@ class App extends Component {
             <Route path="/common-research/:id" component={ViewResearchFront} />
             <Route path="/research-downloads" component={ResearchDownloads} />
             <Route path="/workshop-downloads" component={WorkshopsDownloads} />
+            <Route path="/common-news" component={LatestNews} />
           </Switch>
         </div>
       </div>

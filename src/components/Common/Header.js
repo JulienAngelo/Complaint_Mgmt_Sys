@@ -35,17 +35,8 @@ export default function Header() {
                             <Link to={"/register/ROLE_WORKSHOP_CONDUCTOR"} className="dropdown-item d-item" >Workshop</Link>
                         </div>
                     </li>
-                    <li className="nav-item dropdown nav-item-pad">
-                        <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Past Proceedings
-                        </a>
-                        <div className="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                            <div className="dropdown-divider"></div>
-                            <Link to={"/"} className="dropdown-item d-item" >2020</Link>
-                            <div className="dropdown-divider"></div>
-                            <Link to={"/"} className="dropdown-item d-item" >2021</Link>
-                        </div>
+                    <li className="nav-item nav-item-pad">
+                        <Link to={"/common-news"} className="nav-link" >Latest News</Link>
                     </li>
                     <li className="nav-item dropdown nav-item-pad">
                         <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
